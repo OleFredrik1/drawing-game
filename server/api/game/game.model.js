@@ -14,6 +14,12 @@ var GameSchema = new mongoose.Schema({
     userId: String,
     guess: String,
     createdAt: {type: Date, default: Day.now()}
+  }],
+  points: [{
+    x: Number,
+    y: Number,
+    color: Number,
+    order: Number
   }]
 });
 
