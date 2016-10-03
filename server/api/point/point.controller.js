@@ -11,8 +11,8 @@
 'use strict';
 
 import jsonpatch from 'fast-json-patch';
+import Game from "../game/game.model";
 import Point from './point.model';
-import Game from "../../game.model";
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;

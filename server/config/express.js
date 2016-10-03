@@ -90,6 +90,7 @@ export default function(app) {
     /**
      * Run Browsersync and use middleware for Hot Module Replacement
      */
+    console.log(process.env.PORT);
     browserSync.init({
       open: false,
       logFileChanges: false,
@@ -106,7 +107,11 @@ export default function(app) {
         })
       ],
       port: config.browserSyncPort,
-      plugins: ['bs-fullscreen-message']
+      plugins: ['bs-fullscreen-message'],
+      ui: {
+        port: config.browserSyncPortUi
+      },
+      open: "ui"
     });
 
     /**

@@ -16,8 +16,8 @@ var UserSchema = new Schema({
   },
   provider: String,
   salt: String,
-  successfulDrawings: Number,
-  successfulGuesses: Number
+  successfulDrawings: {type: Number, default: 0},
+  successfulGuesses: {type: Number, default: 0}
 });
 
 /**

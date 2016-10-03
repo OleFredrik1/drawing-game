@@ -64,12 +64,12 @@ function handleError(res, statusCode) {
   };
 }
 
-// Gets a list of Guesss
-export function index(req, res) {
-  return Game.findById(req.body.gameId, "guesses").exec()
-    .then(respondWithResult(res))
-    .catch(handleError(res));
-}
+// // Gets a list of Guesss
+// export function index(req, res) {
+//   return Game.findById(req.body.gameId, "guesses").exec()
+//     .then(respondWithResult(res))
+//     .catch(handleError(res));
+// }
 
 // Gets a single Guess from the DB
 export function show(req, res) {
@@ -82,39 +82,39 @@ export function show(req, res) {
 export function create(req, res) {
   return Game.findByIdAndUpdate(
     req.body.gameId,
-    {$push: {"guesses": {userId: req.body.userId, guess: req.body.guess}}},
+    {$push: {"guesses": {user: req.user.name, guess: req.body.guess}}},
     {safe: true, upsert: true, new: true})
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }
 
-// Upserts the given Guess in the DB at the specified ID
-export function upsert(req, res) {
-  if(req.body._id) {
-    delete req.body._id;
-  }
-  return Guess.findOneAndUpdate({_id: req.params.id}, req.body, {upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
+// // Upserts the given Guess in the DB at the specified ID
+// export function upsert(req, res) {
+//   if(req.body._id) {
+//     delete req.body._id;
+//   }
+//   return Guess.findOneAndUpdate({_id: req.params.id}, req.body, {upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
 
-    .then(respondWithResult(res))
-    .catch(handleError(res));
-}
+//     .then(respondWithResult(res))
+//     .catch(handleError(res));
+// }
 
-// Updates an existing Guess in the DB
-export function patch(req, res) {
-  if(req.body._id) {
-    delete req.body._id;
-  }
-  return Guess.findById(req.params.id).exec()
-    .then(handleEntityNotFound(res))
-    .then(patchUpdates(req.body))
-    .then(respondWithResult(res))
-    .catch(handleError(res));
-}
+// // Updates an existing Guess in the DB
+// export function patch(req, res) {
+//   if(req.body._id) {
+//     delete req.body._id;
+//   }
+//   return Guess.findById(req.params.id).exec()
+//     .then(handleEntityNotFound(res))
+//     .then(patchUpdates(req.body))
+//     .then(respondWithResult(res))
+//     .catch(handleError(res));
+// }
 
-// Deletes a Guess from the DB
-export function destroy(req, res) {
-  return Guess.findById(req.params.id).exec()
-    .then(handleEntityNotFound(res))
-    .then(removeEntity(res))
-    .catch(handleError(res));
-}
+// // Deletes a Guess from the DB
+// export function destroy(req, res) {
+//   return Guess.findById(req.params.id).exec()
+//     .then(handleEntityNotFound(res))
+//     .then(removeEntity(res))
+//     .catch(handleError(res));
+// }

@@ -20,7 +20,6 @@ function onConnect(socket) {
   require('../api/point/point.socket').register(socket);
   require('../api/comment/comment.socket').register(socket);
   require('../api/game/game.socket').register(socket);
-  require('../api/thing/thing.socket').register(socket);
 }
 
 export default function(socketio) {

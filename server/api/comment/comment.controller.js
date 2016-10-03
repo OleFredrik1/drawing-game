@@ -83,7 +83,7 @@ export function show(req, res) {
 export function create(req, res) {
   return Game.findByIdAndUpdate(
     req.body.gameId,
-    {$push: {"comments": {userId: req.body.userId, comment: req.body.guess}}},
+    {$push: {"comments": {user: req.user.name, comment: req.body.guess}}},
     {safe: true, upsert: true, new: true})
     .then(respondWithResult(res, 201))
     .catch(handleError(res));

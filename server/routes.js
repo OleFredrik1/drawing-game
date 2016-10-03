@@ -13,7 +13,6 @@ export default function(app) {
   app.use('/api/points', require('./api/point'));
   app.use('/api/comments', require('./api/comment'));
   app.use('/api/games', require('./api/game'));
-  app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));
 
   app.use('/auth', require('./auth').default);

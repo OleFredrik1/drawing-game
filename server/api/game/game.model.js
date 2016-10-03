@@ -5,15 +5,16 @@ import mongoose from 'mongoose';
 var GameSchema = new mongoose.Schema({
   name: String,
   drawnObject: String,
+  drawer: String,
   comments: [{
-    userId: String,
+    user: String,
     comment: String,
-    createdAt: {type: Date, default: Day.now()}
+    createdAt: {type: Date, default: Date.now()}
   }],
   guesses: [{
-    userId: String,
+    user: String,
+    createdAt: {type: Date, default: Date.now()},
     guess: String,
-    createdAt: {type: Date, default: Day.now()}
   }],
   points: [{
     x: Number,
