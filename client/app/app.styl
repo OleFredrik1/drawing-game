@@ -1,0 +1,25 @@
+$fa-font-path = '../assets/fonts/font-awesome/'
+@import '~font-awesome-stylus/stylus/index'
+
+
+$icon-font-path = '../assets/fonts/bootstrap/'
+@import '~bootstrap-styl/bootstrap/index';
+
+
+//
+// App-wide Styles
+//
+
+.browserupgrade
+  background #ccc
+  color #000
+  margin 0.2em 0
+  padding 0.2em 0
+
+// Component styles are injected through gulp
+/* inject:styl */
+@import 'admin/admin';
+@import 'main/main';
+@import '../components/footer/footer';
+@import '../components/modal/modal';
+/* endinject */
