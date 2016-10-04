@@ -8,7 +8,6 @@
 var SignupPage = function() {
   var form = this.form = element(by.css('.form'));
   form.name = form.element(by.model('vm.user.name'));
-  form.email = form.element(by.model('vm.user.email'));
   form.password = form.element(by.model('vm.user.password'));
   form.confirmPassword = form.element(by.model('vm.user.confirmPassword'));
   form.submit = form.element(by.css('.btn-register'));

@@ -1,0 +1,13 @@
+help
+show dbs
+db.user.find()
+db.User.find()
+help
+db
+use local
+db.User.find()
+use nitrous-dev
+db.User.find()
+db.user.find()
+db
+show dbs

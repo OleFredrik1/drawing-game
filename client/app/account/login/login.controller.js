@@ -3,7 +3,6 @@
 export default class LoginController {
   user = {
     name: '',
-    email: '',
     password: ''
   };
   errors = {
@@ -23,7 +22,7 @@ export default class LoginController {
 
     if(form.$valid) {
       this.Auth.login({
-        email: this.user.email,
+        name: this.user.name,
         password: this.user.password
       })
         .then(() => {

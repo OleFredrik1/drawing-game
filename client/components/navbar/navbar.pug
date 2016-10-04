@@ -6,12 +6,10 @@ div.navbar.navbar-default.navbar-static-top
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href='/') nitrous
+      a#game-brand(href='/') The Drawing Game
 
     div#navbar-main.navbar-collapse.collapse(uib-collapse='$ctrl.isCollapsed')
       ul.nav.navbar-nav
-        li(ng-repeat='item in $ctrl.menu', ui-sref-active='active')
-          a(ui-sref='{{item.state}}') {{item.title}}
 
         li(ng-show='$ctrl.isAdmin()', ui-sref-active='active')
           a(ui-sref='admin') Admin
@@ -27,8 +25,14 @@ div.navbar.navbar-default.navbar-static-top
           p.navbar-text Hello {{ $ctrl.getCurrentUser().name }}
 
         li(ng-show='$ctrl.isLoggedIn()', ui-sref-active='active')
-          a(ui-sref='settings')
-            span.glyphicon.glyphicon-cog
+          .dropdown(uib-dropdown)
+            button.btn.btn-default.dropdown-toggle#setting-button(type="button", data-toggle="dropdown" uib-dropdown-toggle)
+              span.glyphicon.glyphicon-cog
+            ul.dropdown-menu(uib-dropdown-menu)
+              li
+                a(href="settings") Change password
+              li
+                a(href="achievements") Achievements
 
         li(ng-show='$ctrl.isLoggedIn()')
           a(ui-sref='logout') Logout

@@ -18,15 +18,15 @@
     .col-sm-12
       form.form(name='form', ng-submit='vm.login(form)', novalidate='')
         .form-group
-          label Email
-          input.form-control(type='email', name='email', ng-model='vm.user.email')
+          label Username
+          input.form-control(type='text', name='name', ng-model='vm.user.name')
         .form-group
           label Password
           input.form-control(type='password', name='password', ng-model='vm.user.password')
 
         .form-group.has-error
-          p.help-block(ng-show='form.email.$error.required && form.password.$error.required && vm.submitted')
-            | Please enter your email and password.
+          p.help-block(ng-show='form.name.$error.required && form.password.$error.required && vm.submitted')
+            | Please enter your username and password.
           p.help-block {{ vm.errors.login }}
 
         div

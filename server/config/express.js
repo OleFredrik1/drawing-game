@@ -108,9 +108,6 @@ export default function(app) {
       ],
       port: config.browserSyncPort,
       plugins: ['bs-fullscreen-message'],
-      ui: {
-        port: config.browserSyncPortUi
-      },
       open: "ui"
     });
 

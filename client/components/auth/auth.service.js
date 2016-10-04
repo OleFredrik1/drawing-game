@@ -3,7 +3,6 @@
 class _User {
   _id = '';
   name = '';
-  email = '';
   role = '';
   $promise = undefined;
 }
@@ -36,11 +35,11 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
      * @return {Promise}
      */
     login({
-      email,
+      name,
       password
     }, callback) {
       return $http.post('/auth/local', {
-        email,
+        name,
         password
       })
         .then(res => {
