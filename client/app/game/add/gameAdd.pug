@@ -1,0 +1,27 @@
+.container
+  .newgame
+    .row
+      .col-sm-12
+        h1#headline New Game
+    .row.height-50
+    .row
+      .col-md-4
+      .col-md-4#new-game-form
+        form.form(ng-submit='gameAddCtrl.submitNewGame(form)')
+          .form-group
+            label Name:
+            input.form-control.width-300(type='text' ng-model="gameAddCtrl.newGame.name" required)
+          .form-group
+            label Language:
+              br
+              label
+                input(value="english" ng-model="gameAddCtrl.newGame.language" type="radio")
+                img.flag(src="assets/images/Flag_of_the_United_States.jpg")
+              label
+                input(value="norwegian" ng-model="gameAddCtrl.newGame.language" type="radio")
+                img.flag(src="assets/images/Flag_of_Norway.jpg")
+          .form-group
+            label Password (optional):
+              input.form-control.width-300(type="password" ng-model="gameAddCtrl.newGame.password")
+          button.btn.btn-lg.btn-primary(type='submit') Start Game
+      .col-md-4

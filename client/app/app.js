@@ -9,6 +9,7 @@ import 'angular-socket-io';
 
 import uiRouter from 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
+import  "jquery/dist/jquery.min";
 // import ngMessages from 'angular-messages';
 // import ngValidationMatch from 'angular-validation-match';
 
@@ -23,6 +24,7 @@ import admin from './admin';
 import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
 import main from './main/main.component';
+import game from "./game";
 import constants from './app.constants';
 import util from '../components/util/util.module';
 import socket from '../components/socket/socket.service';
@@ -30,7 +32,7 @@ import socket from '../components/socket/socket.service';
 import './app.styl';
 
 angular.module('nitrousApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-    uiBootstrap, _Auth, account, admin, navbar, footer, main, constants, socket, util
+    uiBootstrap, _Auth, account, admin, navbar, footer, main, game, constants, socket, util
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {
@@ -44,7 +46,12 @@ angular.module('nitrousApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-
         }
       });
     });
-  });
+  })
+  .filter('capitalize', function() {
+    return function(input) {
+      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+    }
+});
 
 angular.element(document)
   .ready(() => {

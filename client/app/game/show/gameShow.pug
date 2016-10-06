@@ -1,0 +1,24 @@
+.container
+  .gamelist
+    h1#headline Avilable games
+    .row.height-50
+    table#game-table.table.table-striped
+      thead
+        tr
+          th Name
+          th Drawer
+          th Language
+          th Password
+      tbody
+        tr(ng-repeat="game in gameShowCtrl.games")
+          td {{game.name}}
+          td {{game.drawer}}
+          td {{game.language | capitalize}}
+          td
+            span.fa.fa-lock(ng-show="game.password===''")
+    .row.height-50
+    .row
+      .col-md-4
+      .col-md-4
+        a.btn.btn-danger(ui-sref="gameAdd") Start New Game
+      .col-md-4

@@ -1663,6 +1663,19 @@
                 "local": "User"
               }
             ]
+          },
+          {
+            "source": "../api/game/game.model",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "Game"
+              }
+            ]
           }
         ],
         "exports": {
@@ -1810,7 +1823,7 @@
       "basename": "seed"
     },
     "ignored": false,
-    "code": "/**\n * Populate DB with sample data on server start\n * to disable, edit config/environment/index.js, and set `seedDB: false`\n */\n\n'use strict';\n\nvar _user = require('../api/user/user.model');\n\nvar _user2 = _interopRequireDefault(_user);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n_user2.default.find({}).remove().then(function () {\n  _user2.default.create({\n    provider: 'local',\n    name: 'Test User',\n    email: 'test@example.com',\n    password: 'test'\n  }, {\n    provider: 'local',\n    role: 'admin',\n    name: 'Admin',\n    email: 'admin@example.com',\n    password: 'admin'\n  }).then(function () {\n    console.log('finished populating users');\n  });\n});\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNlZWQuanMiXSwibmFtZXMiOlsiZmluZCIsInJlbW92ZSIsInRoZW4iLCJjcmVhdGUiLCJwcm92aWRlciIsIm5hbWUiLCJlbWFpbCIsInBhc3N3b3JkIiwicm9sZSIsImNvbnNvbGUiLCJsb2ciXSwibWFwcGluZ3MiOiJBQUFBOzs7OztBQUtBOztBQUNBOzs7Ozs7QUFJQSxlQUFLQSxJQUFMLENBQVUsRUFBVixFQUFjQyxNQUFkLEdBQ0dDLElBREgsQ0FDUSxZQUFNO0FBQ1YsaUJBQUtDLE1BQUwsQ0FBWTtBQUNWQyxjQUFVLE9BREE7QUFFVkMsVUFBTSxXQUZJO0FBR1ZDLFdBQU8sa0JBSEc7QUFJVkMsY0FBVTtBQUpBLEdBQVosRUFLRztBQUNESCxjQUFVLE9BRFQ7QUFFREksVUFBTSxPQUZMO0FBR0RILFVBQU0sT0FITDtBQUlEQyxXQUFPLG1CQUpOO0FBS0RDLGNBQVU7QUFMVCxHQUxILEVBWUNMLElBWkQsQ0FZTSxZQUFNO0FBQ1ZPLFlBQVFDLEdBQVIsQ0FBWSwyQkFBWjtBQUNELEdBZEQ7QUFlRCxDQWpCSCIsImZpbGUiOiJzZWVkLmpzIiwic291cmNlUm9vdCI6Ii9ob21lL25pdHJvdXMvc2VydmVyL2NvbmZpZyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogUG9wdWxhdGUgREIgd2l0aCBzYW1wbGUgZGF0YSBvbiBzZXJ2ZXIgc3RhcnRcbiAqIHRvIGRpc2FibGUsIGVkaXQgY29uZmlnL2Vudmlyb25tZW50L2luZGV4LmpzLCBhbmQgc2V0IGBzZWVkREI6IGZhbHNlYFxuICovXG5cbid1c2Ugc3RyaWN0JztcbmltcG9ydCBVc2VyIGZyb20gJy4uL2FwaS91c2VyL3VzZXIubW9kZWwnO1xuXG5cblxuVXNlci5maW5kKHt9KS5yZW1vdmUoKVxuICAudGhlbigoKSA9PiB7XG4gICAgVXNlci5jcmVhdGUoe1xuICAgICAgcHJvdmlkZXI6ICdsb2NhbCcsXG4gICAgICBuYW1lOiAnVGVzdCBVc2VyJyxcbiAgICAgIGVtYWlsOiAndGVzdEBleGFtcGxlLmNvbScsXG4gICAgICBwYXNzd29yZDogJ3Rlc3QnXG4gICAgfSwge1xuICAgICAgcHJvdmlkZXI6ICdsb2NhbCcsXG4gICAgICByb2xlOiAnYWRtaW4nLFxuICAgICAgbmFtZTogJ0FkbWluJyxcbiAgICAgIGVtYWlsOiAnYWRtaW5AZXhhbXBsZS5jb20nLFxuICAgICAgcGFzc3dvcmQ6ICdhZG1pbidcbiAgICB9KVxuICAgIC50aGVuKCgpID0+IHtcbiAgICAgIGNvbnNvbGUubG9nKCdmaW5pc2hlZCBwb3B1bGF0aW5nIHVzZXJzJyk7XG4gICAgfSk7XG4gIH0pO1xuIl19",
+    "code": "/**\n * Populate DB with sample data on server start\n * to disable, edit config/environment/index.js, and set `seedDB: false`\n */\n\n'use strict';\n\nvar _user = require('../api/user/user.model');\n\nvar _user2 = _interopRequireDefault(_user);\n\nvar _game = require('../api/game/game.model');\n\nvar _game2 = _interopRequireDefault(_game);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n_game2.default.find({}).remove().then(function () {\n  _game2.default.create({\n    name: \"mygame\",\n    drawer: \"me\",\n    language: \"english\"\n  }, {\n    name: \"mygame2\",\n    drawer: \"me2\",\n    language: \"norwegian\",\n    password: \"pass\"\n  });\n});\n\n_user2.default.find({}).remove().then(function () {\n  _user2.default.create({\n    provider: 'local',\n    name: 'Test User',\n    email: 'test@example.com',\n    password: 'test'\n  }, {\n    provider: 'local',\n    role: 'admin',\n    name: 'Admin',\n    email: 'admin@example.com',\n    password: 'admin'\n  }).then(function () {\n    console.log('finished populating users');\n  });\n});\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNlZWQuanMiXSwibmFtZXMiOlsiZmluZCIsInJlbW92ZSIsInRoZW4iLCJjcmVhdGUiLCJuYW1lIiwiZHJhd2VyIiwibGFuZ3VhZ2UiLCJwYXNzd29yZCIsInByb3ZpZGVyIiwiZW1haWwiLCJyb2xlIiwiY29uc29sZSIsImxvZyJdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7O0FBS0E7O0FBQ0E7Ozs7QUFDQTs7Ozs7O0FBRUEsZUFBS0EsSUFBTCxDQUFVLEVBQVYsRUFBY0MsTUFBZCxHQUNHQyxJQURILENBQ1EsWUFBSztBQUNYLGlCQUFLQyxNQUFMLENBQVk7QUFDVkMsVUFBTSxRQURJO0FBRVZDLFlBQVEsSUFGRTtBQUdWQyxjQUFVO0FBSEEsR0FBWixFQUlFO0FBQ0FGLFVBQU0sU0FETjtBQUVBQyxZQUFRLEtBRlI7QUFHQUMsY0FBVSxXQUhWO0FBSUFDLGNBQVU7QUFKVixHQUpGO0FBVUQsQ0FaRDs7QUFjQSxlQUFLUCxJQUFMLENBQVUsRUFBVixFQUFjQyxNQUFkLEdBQ0dDLElBREgsQ0FDUSxZQUFNO0FBQ1YsaUJBQUtDLE1BQUwsQ0FBWTtBQUNWSyxjQUFVLE9BREE7QUFFVkosVUFBTSxXQUZJO0FBR1ZLLFdBQU8sa0JBSEc7QUFJVkYsY0FBVTtBQUpBLEdBQVosRUFLRztBQUNEQyxjQUFVLE9BRFQ7QUFFREUsVUFBTSxPQUZMO0FBR0ROLFVBQU0sT0FITDtBQUlESyxXQUFPLG1CQUpOO0FBS0RGLGNBQVU7QUFMVCxHQUxILEVBWUNMLElBWkQsQ0FZTSxZQUFNO0FBQ1ZTLFlBQVFDLEdBQVIsQ0FBWSwyQkFBWjtBQUNELEdBZEQ7QUFlRCxDQWpCSCIsImZpbGUiOiJzZWVkLmpzIiwic291cmNlUm9vdCI6Ii9ob21lL25pdHJvdXMvc2VydmVyL2NvbmZpZyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogUG9wdWxhdGUgREIgd2l0aCBzYW1wbGUgZGF0YSBvbiBzZXJ2ZXIgc3RhcnRcbiAqIHRvIGRpc2FibGUsIGVkaXQgY29uZmlnL2Vudmlyb25tZW50L2luZGV4LmpzLCBhbmQgc2V0IGBzZWVkREI6IGZhbHNlYFxuICovXG5cbid1c2Ugc3RyaWN0JztcbmltcG9ydCBVc2VyIGZyb20gJy4uL2FwaS91c2VyL3VzZXIubW9kZWwnO1xuaW1wb3J0IEdhbWUgZnJvbSBcIi4uL2FwaS9nYW1lL2dhbWUubW9kZWxcIjtcblxuR2FtZS5maW5kKHt9KS5yZW1vdmUoKVxuICAudGhlbigoKSA9PntcbiAgR2FtZS5jcmVhdGUoe1xuICAgIG5hbWU6IFwibXlnYW1lXCIsXG4gICAgZHJhd2VyOiBcIm1lXCIsXG4gICAgbGFuZ3VhZ2U6IFwiZW5nbGlzaFwiXG4gIH0se1xuICAgIG5hbWU6IFwibXlnYW1lMlwiLFxuICAgIGRyYXdlcjogXCJtZTJcIixcbiAgICBsYW5ndWFnZTogXCJub3J3ZWdpYW5cIixcbiAgICBwYXNzd29yZDogXCJwYXNzXCJcbiAgfSlcbn0pO1xuXG5Vc2VyLmZpbmQoe30pLnJlbW92ZSgpXG4gIC50aGVuKCgpID0+IHtcbiAgICBVc2VyLmNyZWF0ZSh7XG4gICAgICBwcm92aWRlcjogJ2xvY2FsJyxcbiAgICAgIG5hbWU6ICdUZXN0IFVzZXInLFxuICAgICAgZW1haWw6ICd0ZXN0QGV4YW1wbGUuY29tJyxcbiAgICAgIHBhc3N3b3JkOiAndGVzdCdcbiAgICB9LCB7XG4gICAgICBwcm92aWRlcjogJ2xvY2FsJyxcbiAgICAgIHJvbGU6ICdhZG1pbicsXG4gICAgICBuYW1lOiAnQWRtaW4nLFxuICAgICAgZW1haWw6ICdhZG1pbkBleGFtcGxlLmNvbScsXG4gICAgICBwYXNzd29yZDogJ2FkbWluJ1xuICAgIH0pXG4gICAgLnRoZW4oKCkgPT4ge1xuICAgICAgY29uc29sZS5sb2coJ2ZpbmlzaGVkIHBvcHVsYXRpbmcgdXNlcnMnKTtcbiAgICB9KTtcbiAgfSk7XG4iXX0=",
     "ast": null,
     "map": {
       "version": 3,
@@ -1822,22 +1835,24 @@
         "remove",
         "then",
         "create",
-        "provider",
         "name",
-        "email",
+        "drawer",
+        "language",
         "password",
+        "provider",
+        "email",
         "role",
         "console",
         "log"
       ],
-      "mappings": "AAAA;;;;;AAKA;;AACA;;;;;;AAIA,eAAKA,IAAL,CAAU,EAAV,EAAcC,MAAd,GACGC,IADH,CACQ,YAAM;AACV,iBAAKC,MAAL,CAAY;AACVC,cAAU,OADA;AAEVC,UAAM,WAFI;AAGVC,WAAO,kBAHG;AAIVC,cAAU;AAJA,GAAZ,EAKG;AACDH,cAAU,OADT;AAEDI,UAAM,OAFL;AAGDH,UAAM,OAHL;AAIDC,WAAO,mBAJN;AAKDC,cAAU;AALT,GALH,EAYCL,IAZD,CAYM,YAAM;AACVO,YAAQC,GAAR,CAAY,2BAAZ;AACD,GAdD;AAeD,CAjBH",
+      "mappings": "AAAA;;;;;AAKA;;AACA;;;;AACA;;;;;;AAEA,eAAKA,IAAL,CAAU,EAAV,EAAcC,MAAd,GACGC,IADH,CACQ,YAAK;AACX,iBAAKC,MAAL,CAAY;AACVC,UAAM,QADI;AAEVC,YAAQ,IAFE;AAGVC,cAAU;AAHA,GAAZ,EAIE;AACAF,UAAM,SADN;AAEAC,YAAQ,KAFR;AAGAC,cAAU,WAHV;AAIAC,cAAU;AAJV,GAJF;AAUD,CAZD;;AAcA,eAAKP,IAAL,CAAU,EAAV,EAAcC,MAAd,GACGC,IADH,CACQ,YAAM;AACV,iBAAKC,MAAL,CAAY;AACVK,cAAU,OADA;AAEVJ,UAAM,WAFI;AAGVK,WAAO,kBAHG;AAIVF,cAAU;AAJA,GAAZ,EAKG;AACDC,cAAU,OADT;AAEDE,UAAM,OAFL;AAGDN,UAAM,OAHL;AAIDK,WAAO,mBAJN;AAKDF,cAAU;AALT,GALH,EAYCL,IAZD,CAYM,YAAM;AACVS,YAAQC,GAAR,CAAY,2BAAZ;AACD,GAdD;AAeD,CAjBH",
       "file": "seed.js",
       "sourceRoot": "/home/nitrous/server/config",
       "sourcesContent": [
-        "/**\n * Populate DB with sample data on server start\n * to disable, edit config/environment/index.js, and set `seedDB: false`\n */\n\n'use strict';\nimport User from '../api/user/user.model';\n\n\n\nUser.find({}).remove()\n  .then(() => {\n    User.create({\n      provider: 'local',\n      name: 'Test User',\n      email: 'test@example.com',\n      password: 'test'\n    }, {\n      provider: 'local',\n      role: 'admin',\n      name: 'Admin',\n      email: 'admin@example.com',\n      password: 'admin'\n    })\n    .then(() => {\n      console.log('finished populating users');\n    });\n  });\n"
+        "/**\n * Populate DB with sample data on server start\n * to disable, edit config/environment/index.js, and set `seedDB: false`\n */\n\n'use strict';\nimport User from '../api/user/user.model';\nimport Game from \"../api/game/game.model\";\n\nGame.find({}).remove()\n  .then(() =>{\n  Game.create({\n    name: \"mygame\",\n    drawer: \"me\",\n    language: \"english\"\n  },{\n    name: \"mygame2\",\n    drawer: \"me2\",\n    language: \"norwegian\",\n    password: \"pass\"\n  })\n});\n\nUser.find({}).remove()\n  .then(() => {\n    User.create({\n      provider: 'local',\n      name: 'Test User',\n      email: 'test@example.com',\n      password: 'test'\n    }, {\n      provider: 'local',\n      role: 'admin',\n      name: 'Admin',\n      email: 'admin@example.com',\n      password: 'admin'\n    })\n    .then(() => {\n      console.log('finished populating users');\n    });\n  });\n"
       ]
     },
-    "mtime": 1475491295834
+    "mtime": 1475604299716
   },
   "{\"filename\":\"/home/nitrous/server/api/thing/thing.model.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/home/nitrous/server/api/thing\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.17.0:development": {
     "metadata": {
@@ -6574,7 +6589,7 @@
       "basename": "game.model"
     },
     "ignored": false,
-    "code": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _mongoose = require('mongoose');\n\nvar _mongoose2 = _interopRequireDefault(_mongoose);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar GameSchema = new _mongoose2.default.Schema({\n  name: String,\n  drawnObject: String,\n  drawer: String,\n  comments: [{\n    user: String,\n    comment: String,\n    createdAt: { type: Date, default: Date.now() }\n  }],\n  guesses: [{\n    user: String,\n    createdAt: { type: Date, default: Date.now() },\n    guess: String\n  }],\n  points: [{\n    x: Number,\n    y: Number,\n    color: Number,\n    order: Number\n  }]\n});\n\nexports.default = _mongoose2.default.model('Game', GameSchema);\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImdhbWUubW9kZWwuanMiXSwibmFtZXMiOlsiR2FtZVNjaGVtYSIsIlNjaGVtYSIsIm5hbWUiLCJTdHJpbmciLCJkcmF3bk9iamVjdCIsImRyYXdlciIsImNvbW1lbnRzIiwidXNlciIsImNvbW1lbnQiLCJjcmVhdGVkQXQiLCJ0eXBlIiwiRGF0ZSIsImRlZmF1bHQiLCJub3ciLCJndWVzc2VzIiwiZ3Vlc3MiLCJwb2ludHMiLCJ4IiwiTnVtYmVyIiwieSIsImNvbG9yIiwib3JkZXIiLCJtb2RlbCJdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7OztBQUVBOzs7Ozs7QUFFQSxJQUFJQSxhQUFhLElBQUksbUJBQVNDLE1BQWIsQ0FBb0I7QUFDbkNDLFFBQU1DLE1BRDZCO0FBRW5DQyxlQUFhRCxNQUZzQjtBQUduQ0UsVUFBUUYsTUFIMkI7QUFJbkNHLFlBQVUsQ0FBQztBQUNUQyxVQUFNSixNQURHO0FBRVRLLGFBQVNMLE1BRkE7QUFHVE0sZUFBVyxFQUFDQyxNQUFNQyxJQUFQLEVBQWFDLFNBQVNELEtBQUtFLEdBQUwsRUFBdEI7QUFIRixHQUFELENBSnlCO0FBU25DQyxXQUFTLENBQUM7QUFDUlAsVUFBTUosTUFERTtBQUVSTSxlQUFXLEVBQUNDLE1BQU1DLElBQVAsRUFBYUMsU0FBU0QsS0FBS0UsR0FBTCxFQUF0QixFQUZIO0FBR1JFLFdBQU9aO0FBSEMsR0FBRCxDQVQwQjtBQWNuQ2EsVUFBUSxDQUFDO0FBQ1BDLE9BQUdDLE1BREk7QUFFUEMsT0FBR0QsTUFGSTtBQUdQRSxXQUFPRixNQUhBO0FBSVBHLFdBQU9IO0FBSkEsR0FBRDtBQWQyQixDQUFwQixDQUFqQjs7a0JBc0JlLG1CQUFTSSxLQUFULENBQWUsTUFBZixFQUF1QnRCLFVBQXZCLEMiLCJmaWxlIjoiZ2FtZS5tb2RlbC5qcyIsInNvdXJjZVJvb3QiOiIvaG9tZS9uaXRyb3VzL3NlcnZlci9hcGkvZ2FtZSIsInNvdXJjZXNDb250ZW50IjpbIid1c2Ugc3RyaWN0JztcblxuaW1wb3J0IG1vbmdvb3NlIGZyb20gJ21vbmdvb3NlJztcblxudmFyIEdhbWVTY2hlbWEgPSBuZXcgbW9uZ29vc2UuU2NoZW1hKHtcbiAgbmFtZTogU3RyaW5nLFxuICBkcmF3bk9iamVjdDogU3RyaW5nLFxuICBkcmF3ZXI6IFN0cmluZyxcbiAgY29tbWVudHM6IFt7XG4gICAgdXNlcjogU3RyaW5nLFxuICAgIGNvbW1lbnQ6IFN0cmluZyxcbiAgICBjcmVhdGVkQXQ6IHt0eXBlOiBEYXRlLCBkZWZhdWx0OiBEYXRlLm5vdygpfVxuICB9XSxcbiAgZ3Vlc3NlczogW3tcbiAgICB1c2VyOiBTdHJpbmcsXG4gICAgY3JlYXRlZEF0OiB7dHlwZTogRGF0ZSwgZGVmYXVsdDogRGF0ZS5ub3coKX0sXG4gICAgZ3Vlc3M6IFN0cmluZyxcbiAgfV0sXG4gIHBvaW50czogW3tcbiAgICB4OiBOdW1iZXIsXG4gICAgeTogTnVtYmVyLFxuICAgIGNvbG9yOiBOdW1iZXIsXG4gICAgb3JkZXI6IE51bWJlclxuICB9XVxufSk7XG5cbmV4cG9ydCBkZWZhdWx0IG1vbmdvb3NlLm1vZGVsKCdHYW1lJywgR2FtZVNjaGVtYSk7XG4iXX0=",
+    "code": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _mongoose = require('mongoose');\n\nvar _mongoose2 = _interopRequireDefault(_mongoose);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar GameSchema = new _mongoose2.default.Schema({\n  name: String,\n  drawnObject: String,\n  drawer: String,\n  language: { type: String, enum: [\"norwegian\", \"english\"] },\n  comments: [{\n    user: String,\n    comment: String,\n    createdAt: { type: Date, default: Date.now() }\n  }],\n  guesses: [{\n    user: String,\n    createdAt: { type: Date, default: Date.now() },\n    guess: String\n  }],\n  points: [{\n    x: Number,\n    y: Number,\n    color: Number,\n    order: Number\n  }],\n  password: { type: String, default: \"\" }\n});\n\nexports.default = _mongoose2.default.model('Game', GameSchema);\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImdhbWUubW9kZWwuanMiXSwibmFtZXMiOlsiR2FtZVNjaGVtYSIsIlNjaGVtYSIsIm5hbWUiLCJTdHJpbmciLCJkcmF3bk9iamVjdCIsImRyYXdlciIsImxhbmd1YWdlIiwidHlwZSIsImVudW0iLCJjb21tZW50cyIsInVzZXIiLCJjb21tZW50IiwiY3JlYXRlZEF0IiwiRGF0ZSIsImRlZmF1bHQiLCJub3ciLCJndWVzc2VzIiwiZ3Vlc3MiLCJwb2ludHMiLCJ4IiwiTnVtYmVyIiwieSIsImNvbG9yIiwib3JkZXIiLCJwYXNzd29yZCIsIm1vZGVsIl0sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7O0FBRUE7Ozs7OztBQUVBLElBQUlBLGFBQWEsSUFBSSxtQkFBU0MsTUFBYixDQUFvQjtBQUNuQ0MsUUFBTUMsTUFENkI7QUFFbkNDLGVBQWFELE1BRnNCO0FBR25DRSxVQUFRRixNQUgyQjtBQUluQ0csWUFBVSxFQUFDQyxNQUFNSixNQUFQLEVBQWVLLE1BQU0sQ0FBQyxXQUFELEVBQWMsU0FBZCxDQUFyQixFQUp5QjtBQUtuQ0MsWUFBVSxDQUFDO0FBQ1RDLFVBQU1QLE1BREc7QUFFVFEsYUFBU1IsTUFGQTtBQUdUUyxlQUFXLEVBQUNMLE1BQU1NLElBQVAsRUFBYUMsU0FBU0QsS0FBS0UsR0FBTCxFQUF0QjtBQUhGLEdBQUQsQ0FMeUI7QUFVbkNDLFdBQVMsQ0FBQztBQUNSTixVQUFNUCxNQURFO0FBRVJTLGVBQVcsRUFBQ0wsTUFBTU0sSUFBUCxFQUFhQyxTQUFTRCxLQUFLRSxHQUFMLEVBQXRCLEVBRkg7QUFHUkUsV0FBT2Q7QUFIQyxHQUFELENBVjBCO0FBZW5DZSxVQUFRLENBQUM7QUFDUEMsT0FBR0MsTUFESTtBQUVQQyxPQUFHRCxNQUZJO0FBR1BFLFdBQU9GLE1BSEE7QUFJUEcsV0FBT0g7QUFKQSxHQUFELENBZjJCO0FBcUJuQ0ksWUFBVSxFQUFDakIsTUFBTUosTUFBUCxFQUFlVyxTQUFTLEVBQXhCO0FBckJ5QixDQUFwQixDQUFqQjs7a0JBd0JlLG1CQUFTVyxLQUFULENBQWUsTUFBZixFQUF1QnpCLFVBQXZCLEMiLCJmaWxlIjoiZ2FtZS5tb2RlbC5qcyIsInNvdXJjZVJvb3QiOiIvaG9tZS9uaXRyb3VzL3NlcnZlci9hcGkvZ2FtZSIsInNvdXJjZXNDb250ZW50IjpbIid1c2Ugc3RyaWN0JztcblxuaW1wb3J0IG1vbmdvb3NlIGZyb20gJ21vbmdvb3NlJztcblxudmFyIEdhbWVTY2hlbWEgPSBuZXcgbW9uZ29vc2UuU2NoZW1hKHtcbiAgbmFtZTogU3RyaW5nLFxuICBkcmF3bk9iamVjdDogU3RyaW5nLFxuICBkcmF3ZXI6IFN0cmluZyxcbiAgbGFuZ3VhZ2U6IHt0eXBlOiBTdHJpbmcsIGVudW06IFtcIm5vcndlZ2lhblwiLCBcImVuZ2xpc2hcIl19LFxuICBjb21tZW50czogW3tcbiAgICB1c2VyOiBTdHJpbmcsXG4gICAgY29tbWVudDogU3RyaW5nLFxuICAgIGNyZWF0ZWRBdDoge3R5cGU6IERhdGUsIGRlZmF1bHQ6IERhdGUubm93KCl9XG4gIH1dLFxuICBndWVzc2VzOiBbe1xuICAgIHVzZXI6IFN0cmluZyxcbiAgICBjcmVhdGVkQXQ6IHt0eXBlOiBEYXRlLCBkZWZhdWx0OiBEYXRlLm5vdygpfSxcbiAgICBndWVzczogU3RyaW5nXG4gIH1dLFxuICBwb2ludHM6IFt7XG4gICAgeDogTnVtYmVyLFxuICAgIHk6IE51bWJlcixcbiAgICBjb2xvcjogTnVtYmVyLFxuICAgIG9yZGVyOiBOdW1iZXJcbiAgfV0sXG4gIHBhc3N3b3JkOiB7dHlwZTogU3RyaW5nLCBkZWZhdWx0OiBcIlwifVxufSk7XG5cbmV4cG9ydCBkZWZhdWx0IG1vbmdvb3NlLm1vZGVsKCdHYW1lJywgR2FtZVNjaGVtYSk7XG4iXX0=",
     "ast": null,
     "map": {
       "version": 3,
@@ -6588,11 +6603,13 @@
         "String",
         "drawnObject",
         "drawer",
+        "language",
+        "type",
+        "enum",
         "comments",
         "user",
         "comment",
         "createdAt",
-        "type",
         "Date",
         "default",
         "now",
@@ -6604,16 +6621,17 @@
         "y",
         "color",
         "order",
+        "password",
         "model"
       ],
-      "mappings": "AAAA;;;;;;AAEA;;;;;;AAEA,IAAIA,aAAa,IAAI,mBAASC,MAAb,CAAoB;AACnCC,QAAMC,MAD6B;AAEnCC,eAAaD,MAFsB;AAGnCE,UAAQF,MAH2B;AAInCG,YAAU,CAAC;AACTC,UAAMJ,MADG;AAETK,aAASL,MAFA;AAGTM,eAAW,EAACC,MAAMC,IAAP,EAAaC,SAASD,KAAKE,GAAL,EAAtB;AAHF,GAAD,CAJyB;AASnCC,WAAS,CAAC;AACRP,UAAMJ,MADE;AAERM,eAAW,EAACC,MAAMC,IAAP,EAAaC,SAASD,KAAKE,GAAL,EAAtB,EAFH;AAGRE,WAAOZ;AAHC,GAAD,CAT0B;AAcnCa,UAAQ,CAAC;AACPC,OAAGC,MADI;AAEPC,OAAGD,MAFI;AAGPE,WAAOF,MAHA;AAIPG,WAAOH;AAJA,GAAD;AAd2B,CAApB,CAAjB;;kBAsBe,mBAASI,KAAT,CAAe,MAAf,EAAuBtB,UAAvB,C",
+      "mappings": "AAAA;;;;;;AAEA;;;;;;AAEA,IAAIA,aAAa,IAAI,mBAASC,MAAb,CAAoB;AACnCC,QAAMC,MAD6B;AAEnCC,eAAaD,MAFsB;AAGnCE,UAAQF,MAH2B;AAInCG,YAAU,EAACC,MAAMJ,MAAP,EAAeK,MAAM,CAAC,WAAD,EAAc,SAAd,CAArB,EAJyB;AAKnCC,YAAU,CAAC;AACTC,UAAMP,MADG;AAETQ,aAASR,MAFA;AAGTS,eAAW,EAACL,MAAMM,IAAP,EAAaC,SAASD,KAAKE,GAAL,EAAtB;AAHF,GAAD,CALyB;AAUnCC,WAAS,CAAC;AACRN,UAAMP,MADE;AAERS,eAAW,EAACL,MAAMM,IAAP,EAAaC,SAASD,KAAKE,GAAL,EAAtB,EAFH;AAGRE,WAAOd;AAHC,GAAD,CAV0B;AAenCe,UAAQ,CAAC;AACPC,OAAGC,MADI;AAEPC,OAAGD,MAFI;AAGPE,WAAOF,MAHA;AAIPG,WAAOH;AAJA,GAAD,CAf2B;AAqBnCI,YAAU,EAACjB,MAAMJ,MAAP,EAAeW,SAAS,EAAxB;AArByB,CAApB,CAAjB;;kBAwBe,mBAASW,KAAT,CAAe,MAAf,EAAuBzB,UAAvB,C",
       "file": "game.model.js",
       "sourceRoot": "/home/nitrous/server/api/game",
       "sourcesContent": [
-        "'use strict';\n\nimport mongoose from 'mongoose';\n\nvar GameSchema = new mongoose.Schema({\n  name: String,\n  drawnObject: String,\n  drawer: String,\n  comments: [{\n    user: String,\n    comment: String,\n    createdAt: {type: Date, default: Date.now()}\n  }],\n  guesses: [{\n    user: String,\n    createdAt: {type: Date, default: Date.now()},\n    guess: String,\n  }],\n  points: [{\n    x: Number,\n    y: Number,\n    color: Number,\n    order: Number\n  }]\n});\n\nexport default mongoose.model('Game', GameSchema);\n"
+        "'use strict';\n\nimport mongoose from 'mongoose';\n\nvar GameSchema = new mongoose.Schema({\n  name: String,\n  drawnObject: String,\n  drawer: String,\n  language: {type: String, enum: [\"norwegian\", \"english\"]},\n  comments: [{\n    user: String,\n    comment: String,\n    createdAt: {type: Date, default: Date.now()}\n  }],\n  guesses: [{\n    user: String,\n    createdAt: {type: Date, default: Date.now()},\n    guess: String\n  }],\n  points: [{\n    x: Number,\n    y: Number,\n    color: Number,\n    order: Number\n  }],\n  password: {type: String, default: \"\"}\n});\n\nexport default mongoose.model('Game', GameSchema);\n"
       ]
     },
-    "mtime": 1475508180976
+    "mtime": 1475791697207
   },
   "{\"filename\":\"/home/nitrous/server/api/point/index.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/home/nitrous/server/api/point\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.17.0:development": {
     "metadata": {
@@ -8090,7 +8108,7 @@
       "basename": "index"
     },
     "ignored": false,
-    "code": "'use strict';\n\nvar express = require('express');\nvar controller = require('./game.controller');\n\nvar router = express.Router();\n\nrouter.get('/', controller.index);\nrouter.get('/:id', controller.show);\nrouter.post('/', controller.create);\nrouter.put('/:id', controller.upsert);\nrouter.patch('/:id', controller.patch);\nrouter.delete('/:id', controller.destroy);\n\nmodule.exports = router;\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbImV4cHJlc3MiLCJyZXF1aXJlIiwiY29udHJvbGxlciIsInJvdXRlciIsIlJvdXRlciIsImdldCIsImluZGV4Iiwic2hvdyIsInBvc3QiLCJjcmVhdGUiLCJwdXQiLCJ1cHNlcnQiLCJwYXRjaCIsImRlbGV0ZSIsImRlc3Ryb3kiLCJtb2R1bGUiLCJleHBvcnRzIl0sIm1hcHBpbmdzIjoiQUFBQTs7QUFFQSxJQUFJQSxVQUFVQyxRQUFRLFNBQVIsQ0FBZDtBQUNBLElBQUlDLGFBQWFELFFBQVEsbUJBQVIsQ0FBakI7O0FBRUEsSUFBSUUsU0FBU0gsUUFBUUksTUFBUixFQUFiOztBQUVBRCxPQUFPRSxHQUFQLENBQVcsR0FBWCxFQUFnQkgsV0FBV0ksS0FBM0I7QUFDQUgsT0FBT0UsR0FBUCxDQUFXLE1BQVgsRUFBbUJILFdBQVdLLElBQTlCO0FBQ0FKLE9BQU9LLElBQVAsQ0FBWSxHQUFaLEVBQWlCTixXQUFXTyxNQUE1QjtBQUNBTixPQUFPTyxHQUFQLENBQVcsTUFBWCxFQUFtQlIsV0FBV1MsTUFBOUI7QUFDQVIsT0FBT1MsS0FBUCxDQUFhLE1BQWIsRUFBcUJWLFdBQVdVLEtBQWhDO0FBQ0FULE9BQU9VLE1BQVAsQ0FBYyxNQUFkLEVBQXNCWCxXQUFXWSxPQUFqQzs7QUFFQUMsT0FBT0MsT0FBUCxHQUFpQmIsTUFBakIiLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiL2hvbWUvbml0cm91cy9zZXJ2ZXIvYXBpL2dhbWUiLCJzb3VyY2VzQ29udGVudCI6WyIndXNlIHN0cmljdCc7XG5cbnZhciBleHByZXNzID0gcmVxdWlyZSgnZXhwcmVzcycpO1xudmFyIGNvbnRyb2xsZXIgPSByZXF1aXJlKCcuL2dhbWUuY29udHJvbGxlcicpO1xuXG52YXIgcm91dGVyID0gZXhwcmVzcy5Sb3V0ZXIoKTtcblxucm91dGVyLmdldCgnLycsIGNvbnRyb2xsZXIuaW5kZXgpO1xucm91dGVyLmdldCgnLzppZCcsIGNvbnRyb2xsZXIuc2hvdyk7XG5yb3V0ZXIucG9zdCgnLycsIGNvbnRyb2xsZXIuY3JlYXRlKTtcbnJvdXRlci5wdXQoJy86aWQnLCBjb250cm9sbGVyLnVwc2VydCk7XG5yb3V0ZXIucGF0Y2goJy86aWQnLCBjb250cm9sbGVyLnBhdGNoKTtcbnJvdXRlci5kZWxldGUoJy86aWQnLCBjb250cm9sbGVyLmRlc3Ryb3kpO1xuXG5tb2R1bGUuZXhwb3J0cyA9IHJvdXRlcjtcbiJdfQ==",
+    "code": "'use strict';\n\nvar express = require('express');\nvar controller = require('./game.controller');\nvar auth = require(\"../../auth/auth.service\");\n\nvar router = express.Router();\n\nrouter.get('/', auth.isAuthenticated(), controller.index);\n//router.get('/:id', controller.show);\nrouter.post('/', auth.isAuthenticated(), controller.create);\n//router.put('/:id', controller.upsert);\n//router.patch('/:id', controller.patch);\nrouter.delete('/:id', auth.isAuthenticated(), controller.destroy);\n\nmodule.exports = router;\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbImV4cHJlc3MiLCJyZXF1aXJlIiwiY29udHJvbGxlciIsImF1dGgiLCJyb3V0ZXIiLCJSb3V0ZXIiLCJnZXQiLCJpc0F1dGhlbnRpY2F0ZWQiLCJpbmRleCIsInBvc3QiLCJjcmVhdGUiLCJkZWxldGUiLCJkZXN0cm95IiwibW9kdWxlIiwiZXhwb3J0cyJdLCJtYXBwaW5ncyI6IkFBQUE7O0FBRUEsSUFBSUEsVUFBVUMsUUFBUSxTQUFSLENBQWQ7QUFDQSxJQUFJQyxhQUFhRCxRQUFRLG1CQUFSLENBQWpCO0FBQ0EsSUFBSUUsT0FBT0YsUUFBUSx5QkFBUixDQUFYOztBQUVBLElBQUlHLFNBQVNKLFFBQVFLLE1BQVIsRUFBYjs7QUFFQUQsT0FBT0UsR0FBUCxDQUFXLEdBQVgsRUFBZ0JILEtBQUtJLGVBQUwsRUFBaEIsRUFBd0NMLFdBQVdNLEtBQW5EO0FBQ0E7QUFDQUosT0FBT0ssSUFBUCxDQUFZLEdBQVosRUFBaUJOLEtBQUtJLGVBQUwsRUFBakIsRUFBeUNMLFdBQVdRLE1BQXBEO0FBQ0E7QUFDQTtBQUNBTixPQUFPTyxNQUFQLENBQWMsTUFBZCxFQUFzQlIsS0FBS0ksZUFBTCxFQUF0QixFQUE4Q0wsV0FBV1UsT0FBekQ7O0FBRUFDLE9BQU9DLE9BQVAsR0FBaUJWLE1BQWpCIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlUm9vdCI6Ii9ob21lL25pdHJvdXMvc2VydmVyL2FwaS9nYW1lIiwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBzdHJpY3QnO1xuXG52YXIgZXhwcmVzcyA9IHJlcXVpcmUoJ2V4cHJlc3MnKTtcbnZhciBjb250cm9sbGVyID0gcmVxdWlyZSgnLi9nYW1lLmNvbnRyb2xsZXInKTtcbnZhciBhdXRoID0gcmVxdWlyZShcIi4uLy4uL2F1dGgvYXV0aC5zZXJ2aWNlXCIpO1xuXG52YXIgcm91dGVyID0gZXhwcmVzcy5Sb3V0ZXIoKTtcblxucm91dGVyLmdldCgnLycsIGF1dGguaXNBdXRoZW50aWNhdGVkKCksIGNvbnRyb2xsZXIuaW5kZXgpO1xuLy9yb3V0ZXIuZ2V0KCcvOmlkJywgY29udHJvbGxlci5zaG93KTtcbnJvdXRlci5wb3N0KCcvJywgYXV0aC5pc0F1dGhlbnRpY2F0ZWQoKSwgY29udHJvbGxlci5jcmVhdGUpO1xuLy9yb3V0ZXIucHV0KCcvOmlkJywgY29udHJvbGxlci51cHNlcnQpO1xuLy9yb3V0ZXIucGF0Y2goJy86aWQnLCBjb250cm9sbGVyLnBhdGNoKTtcbnJvdXRlci5kZWxldGUoJy86aWQnLCBhdXRoLmlzQXV0aGVudGljYXRlZCgpLCBjb250cm9sbGVyLmRlc3Ryb3kpO1xuXG5tb2R1bGUuZXhwb3J0cyA9IHJvdXRlcjtcbiJdfQ==",
     "ast": null,
     "map": {
       "version": 3,
@@ -8101,29 +8119,27 @@
         "express",
         "require",
         "controller",
+        "auth",
         "router",
         "Router",
         "get",
+        "isAuthenticated",
         "index",
-        "show",
         "post",
         "create",
-        "put",
-        "upsert",
-        "patch",
         "delete",
         "destroy",
         "module",
         "exports"
       ],
-      "mappings": "AAAA;;AAEA,IAAIA,UAAUC,QAAQ,SAAR,CAAd;AACA,IAAIC,aAAaD,QAAQ,mBAAR,CAAjB;;AAEA,IAAIE,SAASH,QAAQI,MAAR,EAAb;;AAEAD,OAAOE,GAAP,CAAW,GAAX,EAAgBH,WAAWI,KAA3B;AACAH,OAAOE,GAAP,CAAW,MAAX,EAAmBH,WAAWK,IAA9B;AACAJ,OAAOK,IAAP,CAAY,GAAZ,EAAiBN,WAAWO,MAA5B;AACAN,OAAOO,GAAP,CAAW,MAAX,EAAmBR,WAAWS,MAA9B;AACAR,OAAOS,KAAP,CAAa,MAAb,EAAqBV,WAAWU,KAAhC;AACAT,OAAOU,MAAP,CAAc,MAAd,EAAsBX,WAAWY,OAAjC;;AAEAC,OAAOC,OAAP,GAAiBb,MAAjB",
+      "mappings": "AAAA;;AAEA,IAAIA,UAAUC,QAAQ,SAAR,CAAd;AACA,IAAIC,aAAaD,QAAQ,mBAAR,CAAjB;AACA,IAAIE,OAAOF,QAAQ,yBAAR,CAAX;;AAEA,IAAIG,SAASJ,QAAQK,MAAR,EAAb;;AAEAD,OAAOE,GAAP,CAAW,GAAX,EAAgBH,KAAKI,eAAL,EAAhB,EAAwCL,WAAWM,KAAnD;AACA;AACAJ,OAAOK,IAAP,CAAY,GAAZ,EAAiBN,KAAKI,eAAL,EAAjB,EAAyCL,WAAWQ,MAApD;AACA;AACA;AACAN,OAAOO,MAAP,CAAc,MAAd,EAAsBR,KAAKI,eAAL,EAAtB,EAA8CL,WAAWU,OAAzD;;AAEAC,OAAOC,OAAP,GAAiBV,MAAjB",
       "file": "index.js",
       "sourceRoot": "/home/nitrous/server/api/game",
       "sourcesContent": [
-        "'use strict';\n\nvar express = require('express');\nvar controller = require('./game.controller');\n\nvar router = express.Router();\n\nrouter.get('/', controller.index);\nrouter.get('/:id', controller.show);\nrouter.post('/', controller.create);\nrouter.put('/:id', controller.upsert);\nrouter.patch('/:id', controller.patch);\nrouter.delete('/:id', controller.destroy);\n\nmodule.exports = router;\n"
+        "'use strict';\n\nvar express = require('express');\nvar controller = require('./game.controller');\nvar auth = require(\"../../auth/auth.service\");\n\nvar router = express.Router();\n\nrouter.get('/', auth.isAuthenticated(), controller.index);\n//router.get('/:id', controller.show);\nrouter.post('/', auth.isAuthenticated(), controller.create);\n//router.put('/:id', controller.upsert);\n//router.patch('/:id', controller.patch);\nrouter.delete('/:id', auth.isAuthenticated(), controller.destroy);\n\nmodule.exports = router;\n"
       ]
     },
-    "mtime": 1475483241057
+    "mtime": 1475602132169
   },
   "{\"filename\":\"/home/nitrous/server/api/game/game.controller.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],{\"loose\":false,\"spec\":false}],[[],null],[[],null],[[],{\"spec\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"loose\":false}],[[],null],[[],null],[[],null],[[],{\"loose\":false}],[[],null],[[],{\"loose\":false}],[[],null],[[],null],[[],{\"loose\":false}],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"/home/nitrous/server/api/game\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.17.0:development": {
     "metadata": {

@@ -25,8 +25,26 @@ $icon-font-path = '../assets/fonts/bootstrap/'
 // Component styles are injected through gulp
 /* inject:styl */
 @import 'admin/admin';
+@import 'game/game';
 @import 'main/main';
 @import '../components/footer/footer';
 @import '../components/modal/modal';
-@import "../components/navbar/navbar"
+@import '../components/navbar/navbar';
 /* endinject */
+
+for i in (1..60)
+  .height-{i*5}
+    height i*5px
+  .width-{i*5}
+    width i*5px
+
+for i in range(5, 100, 5)
+  .width-pct-{i}
+    width i*1%
+  .height-pct-{i}
+    height i*1%
+
+
+html, body
+  height 100%
+

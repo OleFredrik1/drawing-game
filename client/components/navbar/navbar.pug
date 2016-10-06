@@ -11,6 +11,9 @@ div.navbar.navbar-default.navbar-static-top
     div#navbar-main.navbar-collapse.collapse(uib-collapse='$ctrl.isCollapsed')
       ul.nav.navbar-nav
 
+        li(ng-repeat="item in $ctrl.menu" ui-sref-active="active")
+            a(ui-sref="{{item.state}}") {{item.title}}
+
         li(ng-show='$ctrl.isAdmin()', ui-sref-active='active')
           a(ui-sref='admin') Admin
 
@@ -30,9 +33,11 @@ div.navbar.navbar-default.navbar-static-top
               span.glyphicon.glyphicon-cog
             ul.dropdown-menu(uib-dropdown-menu)
               li
-                a(href="settings") Change password
+                a(ui-sref="settings") Change password
               li
-                a(href="achievements") Achievements
+                a(ui-sref="achievements") Achievements
 
         li(ng-show='$ctrl.isLoggedIn()')
           a(ui-sref='logout') Logout
+  script.
+    document.getElementsByClass("navbar-nav").style.height = document.getElementsByClass("navbar-header")[0].style.height;

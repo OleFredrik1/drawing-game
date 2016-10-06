@@ -1,4 +1,19 @@
 header#banner.hero-unit
-  .container
+  .container#main-continer
     h1 Welcome to The Drawing Game
-    p.lead Kick-start your next web app with Angular Fullstack
+    p.lead Use your creative talent!
+    img(src="assets/images/pencil.png")
+    .row.height-60
+    .row(ng-hide="$ctrl.isLoggedIn()")
+      .col-md-3
+      a(href="/signup")
+        button.col-md-2.height-50.btn.btn-primary Sign Up
+      .col-md-2
+      a(href="/login")
+        button.col-md-2.height-50.btn.btn-danger Login
+      .col-md-3
+    .row(ng-show="$ctrl.isLoggedIn()")
+      .col-md-4
+      a(href="/game")
+        button.col-md-4.height-50.btn.btn-primary Play
+      .col-md-4
