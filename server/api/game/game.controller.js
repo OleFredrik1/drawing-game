@@ -66,6 +66,10 @@ function handleError(res, statusCode) {
 // Gets a list of Games
 export function index(req, res) {
   return Game.find().exec()
+    .then(function(res){
+      res.password = res.password !== '';
+      return res;
+    })
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
@@ -80,6 +84,7 @@ export function show(req, res) {
 
 // Creates a new Game in the DB
 export function create(req, res) {
+  req.body.drawer = req.user.name;
   return Game.create(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));

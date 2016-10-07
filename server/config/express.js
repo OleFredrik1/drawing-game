@@ -108,7 +108,9 @@ export default function(app) {
       ],
       port: config.browserSyncPort,
       plugins: ['bs-fullscreen-message'],
-      open: "ui"
+      socket: {
+        domain: "tegnespill-218695.nitrousapp.com:3000"
+      }
     });
 
     /**

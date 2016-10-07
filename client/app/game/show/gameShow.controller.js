@@ -12,6 +12,7 @@ export default class GameShowController {
       .then(response => {
         this.games = response.data;
         this.socket.syncUpdates('game', this.games);
+        console.log(this.games);
     });
   }
 }
