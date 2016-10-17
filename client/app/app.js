@@ -25,14 +25,16 @@ import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
 import main from './main/main.component';
 import game from "./game";
+import play from "./play/play.component"
 import constants from './app.constants';
 import util from '../components/util/util.module';
 import socket from '../components/socket/socket.service';
+const moment = require("moment");
 
 import './app.styl';
 
 angular.module('nitrousApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-    uiBootstrap, _Auth, account, admin, navbar, footer, main, game, constants, socket, util
+    uiBootstrap, _Auth, account, admin, navbar, footer, main, game, play, constants, socket, util
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {
@@ -50,6 +52,12 @@ angular.module('nitrousApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-
   .filter('capitalize', function() {
     return function(input) {
       return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+    }
+})
+  .filter('fromNow', function() {
+    return function(input) {
+      var output = moment(input).locale("en").fromNow();
+      return output === "in a few seconds" ? "a few seconds ago" : output;
     }
 });
 

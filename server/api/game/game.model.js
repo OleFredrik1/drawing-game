@@ -18,9 +18,11 @@ var GameSchema = new mongoose.Schema({
     guess: String
   }],
   points: [{
+    lastX: Number,
+    lastY: Number,
     x: Number,
     y: Number,
-    color: Number,
+    color: String,
     order: Number
   }],
   password: {type: String, default: ""}

@@ -1,0 +1,52 @@
+script(src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous")
+style(src="https://rawgit.com/flaute/bootstrap-colorselector/master/lib/bootstrap-colorselector-0.2.0/css/bootstrap-colorselector.css")
+script(src="https://rawgit.com/flaute/bootstrap-colorselector/master/lib/bootstrap-colorselector-0.2.0/js/bootstrap-colorselector.js")
+script alert("hei");
+.container.width-pct-75
+  h1#headline Game
+  .row
+    .alert.alert-info(ng-hide="playCtrl.game.drawnObject === 'false'") Draw: {{playCtrl.game.drawnObject}}
+    .alert.alert-success(ng-show="playCtrl.rightGuessed") Correct guess from {{playCtrl.rightGuess.name}}: {{playCtrl.rightGuess.object}}
+
+  .row
+    .col-md-6
+      canvas#canvas(height="400px" width="500px")
+      .row(ng-show="playCtrl.isDrawer")
+        label.colorpicker#eraser-label.ng-scope
+          input.colorinput(type="radio" ng-model="playCtrl.$scope.color" value="white")
+          .picker-wrapper
+            .fa.fa-eraser.picker-center
+        label.colorpicker(ng-repeat="color in playCtrl.colors")
+          input.colorinput(type="radio" ng-model="playCtrl.$scope.color" value="{{color}}")
+          .picker-wrapper
+            .picker-center(style="background-color:{{color}}")
+
+
+    .col-md-3
+      h2 Guesses
+      form.form(ng-submit="playCtrl.addNewGuess()")
+        table.content-table.table.table-striped
+          thead
+            tr(ng-repeat = "guess in playCtrl.game.guesses | orderBy: 'createdAt'")
+              td(ng-class-odd="'gray'")
+                p.content-info {{guess.createdAt | fromNow | capitalize}} from {{guess.user}}:
+                p.content-content {{guess.guess}}
+          tbody
+            tr(ng-hide="playCtrl.isDrawer")
+              td
+                input.form-control.width-pct-75#guess(type="text" placeholder="Your Guess..." ng-model="playCtrl.newGuess.guess")
+                input.margin-left-10(type="submit" value="Send")
+    .col-md-3
+      h2 Comments
+      form.form(ng-submit="playCtrl.addNewComment()")
+        table.content-table.table.table-striped
+          thead
+            tr(ng-repeat = "comment in playCtrl.game.comments | orderBy: 'createdAt'")
+              td(ng-class-odd="'gray'")
+                p.content-info {{comment.createdAt | fromNow | capitalize}} from {{comment.user}}:
+                p.content-content {{comment.comment}}
+          tbody
+            tr
+              td
+                input.form-control.width-pct-75(type="text" placeholder="Your Comment..." ng-model="playCtrl.newComment.comment")
+                input.margin-left-10(type="submit" value="Send")

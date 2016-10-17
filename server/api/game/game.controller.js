@@ -67,7 +67,9 @@ function handleError(res, statusCode) {
 export function index(req, res) {
   return Game.find().exec()
     .then(function(res){
-      res.password = res.password !== '';
+      for (var x = 0; x < res.length; x++){
+        res[x].password = res[x].password !== '';
+      }
       return res;
     })
     .then(respondWithResult(res))
@@ -78,6 +80,10 @@ export function index(req, res) {
 export function show(req, res) {
   return Game.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
+    .then(function(res){
+      res.drawnObject = req.user.name === res.drawer ? res.drawnObject : false;
+      return res;
+    })
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

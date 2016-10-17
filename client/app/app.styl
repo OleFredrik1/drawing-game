@@ -27,6 +27,7 @@ $icon-font-path = '../assets/fonts/bootstrap/'
 @import 'admin/admin';
 @import 'game/game';
 @import 'main/main';
+@import 'play/play';
 @import '../components/footer/footer';
 @import '../components/modal/modal';
 @import '../components/navbar/navbar';
@@ -37,6 +38,8 @@ for i in (1..60)
     height i*5px
   .width-{i*5}
     width i*5px
+  .margin-left-{i*5}
+    margin-left i*5px
 
 for i in range(5, 100, 5)
   .width-pct-{i}
@@ -47,4 +50,16 @@ for i in range(5, 100, 5)
 
 html, body
   height 100%
+
+.push
+  height 81px
+
+.wrapper
+  min-height 100%
+  margin 0 auto -81px
+
+border-radius()
+  -webkit-border-radius arguments
+  -moz-border-radius arguments
+  border-radius arguments
 

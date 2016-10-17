@@ -9,13 +9,16 @@
           th Drawer
           th Language
           th Password
+          th
       tbody
         tr(ng-repeat="game in gameShowCtrl.games")
           td {{game.name}}
           td {{game.drawer}}
           td {{game.language | capitalize}}
           td
-            span.fa.fa-lock(ng-show="game.password")
+            span.fa.fa-lock(ng-show="game.password === 'true'")
+          td
+            a.btn.btn-danger(href="/play/{{game._id}}") Join
     .row.height-50
     .row
       .col-md-4
