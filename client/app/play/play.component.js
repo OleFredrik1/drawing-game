@@ -25,13 +25,16 @@ export class PlayComponent {
     "ngInject";
     $scope.$watchCollection("playCtrl.game.points", function(newP, oldP){
       console.log($scope.playCtrl.game.points);
-      if (newP.length/*&& !$scope.playCtrl.isDrawer*/){
+      if (newP.length){
         for (var x = $scope.playCtrl.lastPoint; x < $scope.playCtrl.game.points.length; x++){
           var point = $scope.playCtrl.game.points[x];
           $scope.draw(point.lastX, point.lastY, point.x, point.y, point.color);
           $scope.playCtrl.lastPoint = x;
         }
       }
+    });
+    $scope.$watchCollection("playCtrl.game", function(newP, oldP){
+      console.log(newP);
     });
     this.$http = $http;
     this.gameId = $stateParams.id;
@@ -48,7 +51,7 @@ export class PlayComponent {
         this.$scope.setDrawer();
       }
       console.log(response.data);
-       this.socket.syncUpdates('game:'+ this.game._id, this.game);
+       this.socket.syncUpdates('game', this.game);
       console.log(this.$scope);
     });
   }
@@ -127,6 +130,7 @@ export default angular.module('nitrousApp.play', [uiRouter])
             scope.counter++;
             vars.$http.post("/api/points", { "gameId": scope.gameId, "lastX" : scope.lastX, "lastY" : scope.lastY, "x" : x, "y" : y, "color": scope.color, "order": scope.counter});
             scope.draw(scope.lastX, scope.lastY, x, y, scope.color);
+            vars.lastPoint = scope.counter;
             scope.lastX = $event.pageX - scope.canvas.offsetLeft;
             scope.lastY = $event.pageY - scope.canvas.offsetTop;
           }

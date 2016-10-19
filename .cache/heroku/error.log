@@ -4,3 +4,76 @@
 2016/06/20 04:34:00 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
 2016/06/20 04:34:00 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
 2016/06/20 04:34:00 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: plugins
+2016/10/17 09:42:02 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/17 09:42:02 triggering background update
+2016/10/17 09:42:02 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: update
+2016/10/17 09:42:02 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/17 09:42:02 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: login
+2016/10/17 09:42:02 Email: 
+2016/10/17 09:42:03 heroku-cli: Updating to 5.4.5-f66b45a...
+2016/10/17 09:42:17  ▸    rename /home/nitrous/.local/share/heroku/cli /home/nitrous/.local/share/heroku/tmp/354922472/heroku: invalid cross-device link
+2016/10/17 09:42:17 rename /home/nitrous/.local/share/heroku/cli /home/nitrous/.local/share/heroku/tmp/354922472/heroku: invalid cross-device link
+
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/io.go:329 (0x419e6b)
+/usr/local/go/src/runtime/asm_amd64.s:472 (0x48de4e)
+/usr/local/go/src/runtime/panic.go:443 (0x45f199)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/io.go:188 (0x418d0b)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:103 (0x427d45)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:67 (0x4274fc)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:51 (0x427265)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:33 (0x42ca25)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/start.go:70 (0x42535b)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/main.go:22 (0x41b2a1)
+/usr/local/go/src/runtime/proc.go:188 (0x460cb0)
+/usr/local/go/src/runtime/asm_amd64.s:1998 (0x490521)
+
+2016/10/17 09:43:03 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/17 09:43:03 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/17 09:43:04 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: git:remote
+2016/10/17 11:33:04 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/17 11:33:04 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/17 11:33:04 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: logs
+2016/10/17 11:34:26 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/17 11:34:26 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/17 11:46:12 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/17 11:46:12 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/17 11:51:13 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/17 11:51:13 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/17 11:51:13 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: open
+2016/10/17 11:51:14 Error: Error opening web browser.
+Error: Exited with code 3
+
+Manually visit https://the-drawing-game.herokuapp.com/ in your browser.
+    at err (/home/nitrous/.local/share/heroku/cli/lib/node_modules/heroku-cli-util/lib/open.js:10:16)
+    at ChildProcess.<anonymous> (/home/nitrous/.local/share/heroku/cli/lib/node_modules/opn/index.js:86:5)
+    at ChildProcess.g (events.js:286:16)
+    at emitTwo (events.js:106:13)
+    at ChildProcess.emit (events.js:191:7)
+    at maybeClose (internal/child_process.js:852:16)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:215:5)
+2016/10/17 11:57:47 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/17 11:57:47 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/17 11:57:47 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: git:remote
+2016/10/17 11:58:56 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/17 11:58:56 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/17 11:58:56 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: git:remote
+2016/10/17 12:07:30 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/17 12:07:30 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/17 12:07:30 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: open
+2016/10/17 12:07:31 Error: Error opening web browser.
+Error: Exited with code 3
+
+Manually visit https://the-drawing-game.herokuapp.com/ in your browser.
+    at err (/home/nitrous/.local/share/heroku/cli/lib/node_modules/heroku-cli-util/lib/open.js:10:16)
+    at ChildProcess.<anonymous> (/home/nitrous/.local/share/heroku/cli/lib/node_modules/opn/index.js:86:5)
+    at ChildProcess.g (events.js:286:16)
+    at emitTwo (events.js:106:13)
+    at ChildProcess.emit (events.js:191:7)
+    at maybeClose (internal/child_process.js:852:16)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:215:5)
+2016/10/17 12:08:37 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/17 12:08:37 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/17 12:08:37 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: logs
+2016/10/17 12:16:16 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/17 12:16:16 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/17 12:16:16 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: logs

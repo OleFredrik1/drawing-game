@@ -9,8 +9,8 @@ export default class GameAddController {
   }
   submitNewGame = function(form){
     this.$http.post("/api/games", this.newGame)
-    .then(response =>
-      $window.location.href = "play/" + response.data._id;
-    );
+    .then(response =>{
+      this.$window.location.href = "play/" + response.data._id;
+    });
   }
 }
