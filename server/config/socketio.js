@@ -46,6 +46,11 @@ export default function(socketio) {
     socket.log = function(...data) {
       console.log(`SocketIO ${socket.nsp.name} [${socket.address}]`, ...data);
     };
+    
+    socket.on("join room", function(room){
+      socket.join(room);
+      console.log(room);
+    });
 
     // Call onDisconnect.
     socket.on('disconnect', () => {

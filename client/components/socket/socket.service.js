@@ -18,6 +18,8 @@ function Socket(socketFactory) {
     ioSocket
   });
 
+  var goingToSend = true;
+
   return {
     socket,
 
@@ -76,7 +78,65 @@ function Socket(socketFactory) {
     unsyncUpdates(modelName) {
       socket.removeAllListeners(`${modelName}:save`);
       socket.removeAllListeners(`${modelName}:remove`);
-    }
+    },
+    sendPoint(point){
+      socket.emit("send point", point);
+      goingToSend = false;
+      console.log("sender");
+    },
+    sendComment(comment){
+      socket.emit("send comment", comment);
+    },
+    startNewGame(options){
+      socket.emit("new game", options);
+      console.log("sender beskjed om et nytt spill");
+    },
+    sendGuess(guess){
+      socket.emit("send guess", guess);
+    },
+    initializeGame(gameID, points, guesses, comments, drawer, scope, rightGuess, rightGuessed, pass){
+      socket.emit("join room", gameID+pass);
+      if (drawer){
+        socket.on("done", function() {
+            goingToSend = true;
+            console.log("klar");
+            if (scope.pointsToSend.length > 0){
+              scope.sendPoints();
+            }
+        });
+        console.log("gjør klar til å få done");
+      }
+      else{
+        socket.on("point", function(data){
+          console.log("fått, bare for sikkerhetsskyld");
+            for (var x=0; x<data.length; x++){
+              points.push(data[x]);
+              console.log("fått");
+            }
+          });
+          console.log("gjør klar til å få nytt punkt");
+      }
+      socket.on("comment", function(data){
+        comments.push(data);
+        console.log("fått");
+      });
+      socket.on("guess", function(data){
+        guesses.push(data);
+        console.log("fått");
+      });
+      socket.on("new game", function(gameId) {
+        scope.toNewGame(gameId);
+        console.log("får beskjed om nytt spill");
+      })
+      socket.on("right guess", function(data){
+        scope.setRightGuess(data);
+        console.log("får beskjed");
+      });
+    },
+    isGoingToSend(){
+      console.log(goingToSend);
+      return goingToSend;
+    },
   };
 }
 

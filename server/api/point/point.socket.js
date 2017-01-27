@@ -5,6 +5,7 @@
 'use strict';
 
 import PointEvents from './point.events';
+var controller = require('./point.controller');
 
 // Model events to emit
 var events = ['save', 'remove'];
@@ -18,6 +19,14 @@ export function register(socket) {
     PointEvents.on(event, listener);
     socket.on('disconnect', removeListener(event, listener));
   }
+  socket.on("send point", function(req){
+    socket.broadcast.to(req[0].gameId+req[0].password).emit("point", req);
+    controller.create(req)
+    .then(function(){
+      socket.emit("done");
+    });
+    /*socket.emit("done");*/
+  });
 }
 
 

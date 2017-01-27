@@ -19,16 +19,17 @@ export class PlayComponent {
   newComment = {};
   isDrawer = false;
   lastPoint = 0;
-  colors = ["black", "red", "orange", "yellow", "green", "blue", "purple"]
+  timeToRedirect = 8;
+  colors = ["black", "red", "orange", "yellow", "green", "blue", "purple"];
   /*@ngInject*/
-  constructor($http, $stateParams, $scope, socket, Auth) {
+  constructor($http, $stateParams, $scope, $window, socket, Auth) {
     "ngInject";
     $scope.$watchCollection("playCtrl.game.points", function(newP, oldP){
       console.log($scope.playCtrl.game.points);
       if (newP.length){
         for (var x = $scope.playCtrl.lastPoint; x < $scope.playCtrl.game.points.length; x++){
           var point = $scope.playCtrl.game.points[x];
-          $scope.draw(point.lastX, point.lastY, point.x, point.y, point.color);
+          $scope.draw(point.x, point.y, point.color, point.size, point.startPoint);
           $scope.playCtrl.lastPoint = x;
         }
       }
@@ -40,19 +41,30 @@ export class PlayComponent {
     this.gameId = $stateParams.id;
     this.$scope = $scope;
     this.socket = socket;
+    this.$window = $window;
     this.getCurrentUser = Auth.getCurrentUserSync;
   }
   $onInit(){
-    this.$http.get("/api/games/" + this.gameId)
-    .then(response =>{
-      this.game = response.data;
-      this.isDrawer = this.getCurrentUser().name === this.game.drawer;
-      if (this.isDrawer){
-        this.$scope.setDrawer();
+    this.passVar = (this.$window.sessionStorage.game && JSON.parse(this.$window.sessionStorage.game).gameId === this.gameId) ? JSON.parse(this.$window.sessionStorage.game) : {gameId: this.gameId, password: ''};
+    var controllerVars = this;
+    this.$http.post("/api/games/" + this.gameId, this.passVar)
+    .then(function successCallback(response){
+      console.log(response);
+      controllerVars.game = response.data;
+      controllerVars.isDrawer = controllerVars.getCurrentUser().name === controllerVars.game.drawer;
+      if (controllerVars.isDrawer){
+        controllerVars.$scope.setDrawer();
       }
-      console.log(response.data);
-       this.socket.syncUpdates('game', this.game);
-      console.log(this.$scope);
+      controllerVars.socket.initializeGame(controllerVars.gameId, controllerVars.game.points, controllerVars.game.guesses, controllerVars.game.comments, controllerVars.isDrawer, controllerVars.$scope, controllerVars.rightGuess, controllerVars.rightGuessed, controllerVars.passVar.password);
+      }, function errorCallback(){
+        alert("Sorry, wrong password or invalid game.");
+        controllerVars.$window.history.back();
+      }
+    );
+  }
+  countdown = function(){
+    this.$scope.$apply(function(){
+      this.timeToRedirect--;
     });
   }
   addNewComment = function(){
@@ -88,23 +100,34 @@ export default angular.module('nitrousApp.play', [uiRouter])
         console.log(scope.canvas);
         console.log(scope);
         scope.mouseDown = false;
-        scope.lastX = 0;
-        scope.lastY = 0;
-        scope.counter = 0;
+        scope.counter = vars.lastPoint || 0;
         scope.color = "black";
+        scope.size = 3;
         scope.gameId = vars.gameId;
+        scope.pointsToSend = [];
         var eraser = angular.element(document.getElementById("eraser"));
         var guessInput = angular.element(document.getElementById("guess"));
+        var maincontainer = document.getElementById("main-container");
+        var wrapper = document.getElementsByClassName("wrapper")[0];
         angular.element(document).on("unload", function(){
           vars.socket.emit("avlogger");
         });
         angular.element(document).on("mouseup", function(){
           scope.mouseDown = false;
         });
+        scope.distanceBetween = function(point1, point2) {
+          return Math.sqrt(Math.pow(point2.x - point1.x, 2) + Math.pow(point2.y - point1.y, 2));
+        };
+        scope.angleBetween  = function(point1, point2) {
+          return Math.atan2( point2.x - point1.x, point2.y - point1.y );
+        };
         scope.setDrawer = function(){
           element.on("mousedown", scope.pressMouseDown);
           element.on("mousemove", scope.moveMouse);
-        }
+        };
+        scope.getSize = function(){
+          return parseInt(scope.size);
+        };
         guessInput.on("keydown", function($event) {
           console.log($event);
           if ($event.which === 32){
@@ -116,32 +139,119 @@ export default angular.module('nitrousApp.play', [uiRouter])
         });
         scope.pressMouseDown = function ($event){
           scope.mouseDown = true;
-          scope.lastX = $event.pageX - scope.canvas.offsetLeft;
-          scope.lastY = $event.pageY - scope.canvas.offsetTop;
+          var size = scope.getSize();
+          var x = $event.pageX - scope.canvas.offsetLeft - maincontainer.offsetLeft;
+          var y = $event.pageY - scope.canvas.offsetTop - maincontainer.offsetTop - wrapper.offsetTop - 49;
+          console.log(x,y);
+          scope.counter++;
+          console.log(scope.size);
+          scope.pointsToSend.push({ "gameId": scope.gameId, "x" : x, "y" : y, "color": scope.color, "size": size, "order": scope.counter, startPoint: true, "drawerToken": vars.game.drawerToken, password: vars.passVar.password});
+          if (vars.socket.isGoingToSend()){
+            scope.sendPoints();
+          }
+          scope.draw(x, y, scope.color, size, true);
           console.log(vars.game.points);
-        }
+        };
         scope.test = function(){
           console.log("funker");
-        }
+        };
         scope.moveMouse = function($event){
           if (scope.mouseDown){
-            var x = $event.pageX - scope.canvas.offsetLeft;
-            var y = $event.pageY - scope.canvas.offsetTop;
+            var size = scope.getSize();
+            var x = $event.pageX - scope.canvas.offsetLeft - maincontainer.offsetLeft;
+            var y = $event.pageY - scope.canvas.offsetTop - maincontainer.offsetTop - wrapper.offsetTop - 49;
+            console.log(x,y);
             scope.counter++;
-            vars.$http.post("/api/points", { "gameId": scope.gameId, "lastX" : scope.lastX, "lastY" : scope.lastY, "x" : x, "y" : y, "color": scope.color, "order": scope.counter});
-            scope.draw(scope.lastX, scope.lastY, x, y, scope.color);
+            console.log(scope.size);
+            scope.pointsToSend.push({ "gameId": scope.gameId, "x" : x, "y" : y, "color": scope.color, "size": size, "order": scope.counter, startPoint: false, "drawerToken": vars.game.drawerToken, password: vars.passVar.password});
+            if (vars.socket.isGoingToSend()){
+              scope.sendPoints();
+            }
+            scope.draw(x, y, scope.color, size, false);
             vars.lastPoint = scope.counter;
-            scope.lastX = $event.pageX - scope.canvas.offsetLeft;
-            scope.lastY = $event.pageY - scope.canvas.offsetTop;
           }
-        }
-        scope.draw = function(preX, preY, x, y, pointColor){
+        };
+        scope.sendPoints = function(){
+          vars.socket.sendPoint(scope.pointsToSend);
+          scope.pointsToSend = [];
+        };
+        scope.draw = function(x, y, pointColor, size, startPoint){ // Based on this: http://perfectionkills.com/exploring-canvas-drawing-techniques/
+          scope.c.fillStyle = pointColor;
           scope.c.strokeStyle = pointColor;
-          scope.c.beginPath();
-          scope.c.moveTo(preX, preY);
-          scope.c.lineTo(x, y);
-          scope.c.stroke();
+          var currentPoint = {x: x, y: y};
+          scope.lastPoint = scope.lastPoint || {x : x, y : y};
+          var dist = scope.distanceBetween(scope.lastPoint, currentPoint);
+          var angle = scope.angleBetween(scope.lastPoint, currentPoint);
+          if (startPoint){
+            scope.drawPoint(x, y, size);
+          }
+          else{ 
+            for (var n = 0; n<dist; n+=size){
+              var newX = scope.lastPoint.x + (Math.sin(angle) * n);
+              var newY = scope.lastPoint.y + (Math.cos(angle) * n);
+              scope.drawPoint(newX, newY, size);
+            }
+          }
+          scope.lastPoint = {x : x, y : y};
           /*console.log(preX, preY, x, y, pointColor);*/
+        };
+        scope.drawPoint = function(x, y, size){
+          scope.c.beginPath();
+          scope.c.arc(x, y, size, 0, 2*Math.PI);
+          scope.c.stroke();
+          scope.c.fill();
+        };
+        vars.sendComment = function(){
+          vars.newComment.user = vars.getCurrentUser().name;
+          vars.newComment.gameId = scope.gameId;
+          vars.newComment.password = vars.passVar.password;
+          vars.socket.sendComment(vars.newComment);
+          vars.newComment = {};
+        };
+        vars.sendGuess = function(){
+          vars.newGuess.user = vars.getCurrentUser().name;
+          vars.newGuess.gameId = scope.gameId;
+          vars.newGuess.guess = vars.newGuess.guess.toLowerCase();
+          vars.newGuess.password = vars.passVar.password;
+          vars.socket.sendGuess(vars.newGuess);
+          vars.newGuess = {};
+        };
+        scope.setRightGuess = function(guess){
+          console.log("setter");
+          vars.rightGuess = guess;
+          vars.rightGuessed = true;
+          console.log(guess.user);
+          console.log(vars.getCurrentUser().name);
+          console.log("Trippel" + guess.user === vars.getCurrentUser().name);
+          console.log("Dobbel" + guess.user == vars.getCurrentUser().name);
+          if (guess.user === vars.getCurrentUser().name){
+            console.log("gjør klar til å sende beskjed om nytt spill");
+            vars.socket.startNewGame({drawer: guess.user, language: vars.game.language, name: vars.game.name, oldGameId: vars.gameId, password: vars.passVar.password});
+          }
+        };
+        scope.toNewGame = function(newId){
+          console.log("setter igang nytt spill");
+          if (document.hidden){
+            window.sessionStorage.setItem("game", JSON.stringify({gameId: newId, password: vars.passVar.password}));
+            window.location = "https://the-drawing-game.herokuapp.com/play/"+newId;
+          }
+          else{
+            window.setInterval(function(){/*
+              vars.countdown();*/
+              scope.$apply(function(){
+                vars.timeToRedirect--;
+              });
+              console.log(vars.timeToRedirect);
+              if (document.hidden){
+                window.sessionStorage.setItem("game", JSON.stringify({gameId: newId, password: vars.passVar.password}));
+                window.location = "https://the-drawing-game.herokuapp.com/play/"+newId;
+              }
+            }, 1000);
+            window.setTimeout(function(){
+              window.sessionStorage.setItem("game", JSON.stringify({gameId: newId, password: vars.passVar.password}));
+              window.location = "https://the-drawing-game.herokuapp.com/play/"+newId;
+            }, 7000);
+          }
         }
       }
     };

@@ -2,7 +2,7 @@
   .gamelist
     h1#headline Avilable games
     .row.height-50
-    table#game-table.table.table-striped
+    table#game-table.table.table-striped.start-table
       thead
         tr
           th Name
@@ -11,14 +11,14 @@
           th Password
           th
       tbody
-        tr(ng-repeat="game in gameShowCtrl.games")
+        tr(ng-repeat="game in gameShowCtrl.games | orderBy: '-createdAt'")
           td {{game.name}}
           td {{game.drawer}}
           td {{game.language | capitalize}}
           td
-            span.fa.fa-lock(ng-show="game.password === 'true'")
+            input(type="password" placeholder="password" ng-show="game.password === 'true'" id="{{game._id}}")
           td
-            a.btn.btn-danger(href="/play/{{game._id}}") Join
+            a.btn.btn-danger(ng-href="/play/{{game._id}}" ng-click="gameShowCtrl.addStorage(game._id); $event.preventDefault()") Join
     .row.height-50
     .row
       .col-md-4

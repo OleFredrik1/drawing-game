@@ -5,6 +5,7 @@
 'use strict';
 
 import CommentEvents from './comment.events';
+var CommentController = require("./comment.controller");
 
 // Model events to emit
 var events = ['save', 'remove'];
@@ -18,7 +19,15 @@ export function register(socket) {
     CommentEvents.on(event, listener);
     socket.on('disconnect', removeListener(event, listener));
   }
+  socket.on("send comment", function(comment){
+    comment.createdAt = Date.now();
+    socket.emit("comment", comment);
+    socket.broadcast.to(comment.gameId+comment.password).emit("comment", comment);
+    CommentController.create(comment);
+  });
 }
+
+
 
 
 function createListener(event, socket) {

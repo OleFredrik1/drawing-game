@@ -77,3 +77,137 @@ Manually visit https://the-drawing-game.herokuapp.com/ in your browser.
 2016/10/17 12:16:16 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
 2016/10/17 12:16:16 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
 2016/10/17 12:16:16 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: logs
+2016/10/19 07:05:17 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/19 07:05:17 triggering background update
+2016/10/19 07:05:17 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: update
+2016/10/19 07:05:17 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/19 07:05:17 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: logs
+2016/10/19 07:05:18 heroku-cli: Updating to 5.4.6-02f2268...
+2016/10/19 07:05:32  ▸    rename /home/nitrous/.local/share/heroku/cli /home/nitrous/.local/share/heroku/tmp/335327878/heroku: invalid cross-device link
+2016/10/19 07:05:32 rename /home/nitrous/.local/share/heroku/cli /home/nitrous/.local/share/heroku/tmp/335327878/heroku: invalid cross-device link
+
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/io.go:329 (0x419e6b)
+/usr/local/go/src/runtime/asm_amd64.s:472 (0x48de4e)
+/usr/local/go/src/runtime/panic.go:443 (0x45f199)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/io.go:188 (0x418d0b)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:103 (0x427d45)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:67 (0x4274fc)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:51 (0x427265)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:33 (0x42ca25)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/start.go:70 (0x42535b)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/main.go:22 (0x41b2a1)
+/usr/local/go/src/runtime/proc.go:188 (0x460cb0)
+/usr/local/go/src/runtime/asm_amd64.s:1998 (0x490521)
+
+2016/10/25 06:10:45 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/25 06:10:45 triggering background update
+2016/10/25 06:10:45 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: update
+2016/10/25 06:10:45 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/25 06:10:45 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: logs
+2016/10/25 06:10:45 heroku-cli: Updating to 5.4.8-eee5ec9...
+2016/10/25 06:10:59  ▸    rename /home/nitrous/.local/share/heroku/cli /home/nitrous/.local/share/heroku/tmp/818615658/heroku: invalid cross-device link
+2016/10/25 06:10:59 rename /home/nitrous/.local/share/heroku/cli /home/nitrous/.local/share/heroku/tmp/818615658/heroku: invalid cross-device link
+
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/io.go:329 (0x419e6b)
+/usr/local/go/src/runtime/asm_amd64.s:472 (0x48de4e)
+/usr/local/go/src/runtime/panic.go:443 (0x45f199)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/io.go:188 (0x418d0b)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:103 (0x427d45)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:67 (0x4274fc)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:51 (0x427265)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:33 (0x42ca25)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/start.go:70 (0x42535b)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/main.go:22 (0x41b2a1)
+/usr/local/go/src/runtime/proc.go:188 (0x460cb0)
+/usr/local/go/src/runtime/asm_amd64.s:1998 (0x490521)
+
+2016/10/25 06:15:37 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/25 06:15:37 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/25 06:15:37 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: logs
+2016/10/25 06:36:22 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/25 06:36:22 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/25 06:36:22 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: logs
+2016/10/26 07:06:46 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/26 07:06:46 triggering background update
+2016/10/26 07:06:46 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: update
+2016/10/26 07:06:46 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/26 07:06:46 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: logs
+2016/10/26 07:06:47 HTTP Error: https://cli-analytics.heroku.com/record 400 Bad Request
+2016/10/26 07:06:47 goroutine 1 [running]:
+runtime/debug.Stack(0x0, 0x0, 0x0)
+/usr/local/go/src/runtime/debug/stack.go:24 +0x80
+main.LogIfError(0x7fc54d4a7f30, 0xc820386420)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/io.go:196 +0x106
+main.SubmitAnalytics()
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/analytics.go:129 +0x538
+main.Update(0x966ab8, 0x6)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:50 +0x1d
+main.init.8.func1(0xc820171180)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:33 +0xa5
+main.Start(0xc82000a280, 0x2, 0x2)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/start.go:70 +0x62b
+main.main()
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/main.go:22 +0x91
+
+2016/10/26 07:06:48 heroku-cli: Updating to 5.4.8-eee5ec9...
+2016/10/26 07:07:02  ▸    rename /home/nitrous/.local/share/heroku/cli /home/nitrous/.local/share/heroku/tmp/158753685/heroku: invalid cross-device link
+2016/10/26 07:07:02 rename /home/nitrous/.local/share/heroku/cli /home/nitrous/.local/share/heroku/tmp/158753685/heroku: invalid cross-device link
+
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/io.go:329 (0x419e6b)
+/usr/local/go/src/runtime/asm_amd64.s:472 (0x48de4e)
+/usr/local/go/src/runtime/panic.go:443 (0x45f199)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/io.go:188 (0x418d0b)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:103 (0x427d45)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:67 (0x4274fc)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:51 (0x427265)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:33 (0x42ca25)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/start.go:70 (0x42535b)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/main.go:22 (0x41b2a1)
+/usr/local/go/src/runtime/proc.go:188 (0x460cb0)
+/usr/local/go/src/runtime/asm_amd64.s:1998 (0x490521)
+
+2016/10/26 07:22:56 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/26 07:22:56 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/26 07:22:56 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: logs
+2016/10/31 13:10:27 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/31 13:10:27 triggering background update
+2016/10/31 13:10:27 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: update
+2016/10/31 13:10:27 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/31 13:10:27 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: logs
+2016/10/31 13:10:27 heroku-cli: Updating to 5.4.8-eee5ec9...
+2016/10/31 13:10:40  ▸    rename /home/nitrous/.local/share/heroku/cli /home/nitrous/.local/share/heroku/tmp/824573077/heroku: invalid cross-device link
+2016/10/31 13:10:40 rename /home/nitrous/.local/share/heroku/cli /home/nitrous/.local/share/heroku/tmp/824573077/heroku: invalid cross-device link
+
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/io.go:329 (0x419e6b)
+/usr/local/go/src/runtime/asm_amd64.s:472 (0x48de4e)
+/usr/local/go/src/runtime/panic.go:443 (0x45f199)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/io.go:188 (0x418d0b)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:103 (0x427d45)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:67 (0x4274fc)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:51 (0x427265)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/update.go:33 (0x42ca25)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/start.go:70 (0x42535b)
+/home/ubuntu/.go_workspace/src/github.com/heroku/cli/main.go:22 (0x41b2a1)
+/usr/local/go/src/runtime/proc.go:188 (0x460cb0)
+/usr/local/go/src/runtime/asm_amd64.s:1998 (0x490521)
+
+2016/10/31 13:21:32 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/31 13:21:32 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/31 13:21:32 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: logs
+2016/10/31 13:24:44 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/31 13:24:44 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/31 13:24:44 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: addons:open
+2016/10/31 13:24:45 Error: Error opening web browser.
+Error: Exited with code 3
+
+Manually visit https://addons-sso.heroku.com/apps/4a756725-2507-4092-9230-e31f2a4b579c/addons/f059349f-033f-4632-8b1d-539c9bdca1c8 in your browser.
+    at err (/home/nitrous/.local/share/heroku/cli/lib/node_modules/heroku-cli-util/lib/open.js:10:16)
+    at ChildProcess.<anonymous> (/home/nitrous/.local/share/heroku/cli/lib/node_modules/opn/index.js:86:5)
+    at ChildProcess.g (events.js:286:16)
+    at emitTwo (events.js:106:13)
+    at ChildProcess.emit (events.js:191:7)
+    at maybeClose (internal/child_process.js:852:16)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:215:5)
+2016/10/31 13:25:51 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: version
+2016/10/31 13:25:51 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: commands
+2016/10/31 13:25:51 heroku-cli/5.2.20-9d094b0 (linux-amd64) go1.6.2 /home/nitrous/.local/share/heroku/cli/bin/heroku cmd: logs

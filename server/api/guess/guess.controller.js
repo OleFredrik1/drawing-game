@@ -65,11 +65,9 @@ function handleError(res, statusCode) {
 }
 
 // // Gets a list of Guesss
-// export function index(req, res) {
-//   return Game.findById(req.body.gameId, "guesses").exec()
-//     .then(respondWithResult(res))
-//     .catch(handleError(res));
-// }
+export function index(req, res) {
+   return Game.findOne({_id: req.gameId, drawnObject: req.guess}).exec();
+ }
 
 // Gets a single Guess from the DB
 export function show(req, res) {
@@ -80,12 +78,12 @@ export function show(req, res) {
 
 // Creates a new Guess in the DB
 export function create(req, res) {
-  return Game.findByIdAndUpdate(
-    req.body.gameId,
-    {$push: {"guesses": {user: req.user.name, guess: req.body.guess, createdAt: Date.now()}}},
-    {safe: true, upsert: true, new: true})
-    .then(respondWithResult(res, 201))
-    .catch(handleError(res));
+  return Game.findOneAndUpdate(
+    {_id: req.gameId, password: req.password},
+    {$push: {"guesses": {user: req.user, guess: req.guess, createdAt: req.createdAt}}},
+    {safe: true, upsert: true, new: true}).exec();
+//    .then(respondWithResult(res, 201))
+//    .catch(handleError(res));
 }
 
 // // Upserts the given Guess in the DB at the specified ID

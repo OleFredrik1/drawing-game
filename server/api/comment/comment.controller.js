@@ -13,6 +13,7 @@
 import jsonpatch from 'fast-json-patch';
 import Comment from './comment.model';
 import Game from '../game/game.model';
+var commentSocket = require("./comment.socket");
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -81,12 +82,17 @@ export function show(req, res) {
 
 // Creates a new Comment in the DB
 export function create(req, res) {
-  return Game.findByIdAndUpdate(
-    req.body.gameId,
-    {$push: {"comments": {user: req.user.name, comment: req.body.comment, createdAt: Date.now()}}},
-    {safe: true, upsert: true, new: true})
-    .then(respondWithResult(res, 201))
-    .catch(handleError(res));
+  return Game.findOneAndUpdate(
+    {_id: req.gameId, password: req.password},
+    {$push: {"comments": {user: req.user, comment: req.comment, createdAt: req.createdAt}}},
+    {safe: true, upsert: true, new: true}).exec();
+//    .then(respondWithResult(res, 201))
+//    .then(function(result){
+//      commentSocket.register.sendComment({user: req.user.name, comment: req.body.comment, createdAt: Date.now()});
+//      console.log("skal sende");
+//      return result;
+//    })
+//    .catch(handleError(res));
 }
 
 // Upserts the given Comment in the DB at the specified ID

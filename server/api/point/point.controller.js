@@ -82,11 +82,9 @@ export function show(req, res) {
 // Creates a new Point in the DB
 export function create(req, res) {
   return Game.findOneAndUpdate(
-    {"_id": req.body.gameId, "drawer": req.user.name},
-    {$push: {"points": {lastX: req.body.lastX, lastY: req.body.lastY, x: req.body.x, y: req.body.y, color: req.body.color, order: req.body.order}}},
-    {safe: true, upsert: true, new: true})
-    .then(respondWithResult(res, 201))
-    .catch(handleError(res));
+    {_id: req[0].gameId, drawerToken: req[0].drawerToken},
+    {$push: {"points": {$each: req}}},
+    {safe: true, upsert: true, new: true});
 }
 
 // // Upserts the given Point in the DB at the specified ID
