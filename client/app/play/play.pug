@@ -5,7 +5,8 @@ script alert("hei");
 .container.width-pct-95#main-container
   h1#headline Game
   .row
-    .alert.alert-info(ng-hide="playCtrl.game.drawnObject === 'false' || playCtrl.rightGuessed") Draw: {{playCtrl.game.drawnObject}}
+    .alert.alert-info(ng-show="playCtrl.isDrawer && !playCtrl.rightGuessed") Draw: {{playCtrl.game.drawnObject}}
+    .alert.alert-info(ng-show="!playCtrl.isDrawer && !playCtrl.rightGuessed") Hint: &nbsp;&nbsp;&nbsp;{{playCtrl.game.drawnObject}} 
     .alert.alert-success(ng-show="playCtrl.rightGuessed") Correct guess from {{playCtrl.rightGuess.user}}: {{playCtrl.rightGuess.guess}} -- New Game in {{playCtrl.timeToRedirect}} sec.
 
   .row

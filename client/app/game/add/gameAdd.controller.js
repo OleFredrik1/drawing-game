@@ -10,7 +10,7 @@ export default class GameAddController {
   submitNewGame = function(form){
     this.$http.post("/api/games", this.newGame)
     .then(response =>{
-      this.$window.sessionStorage.setItem("game", JSON.stringify({"gameId": response.data._id, "password": this.newGame.password}));
+      this.$window.sessionStorage.setItem("game", JSON.stringify({"gameId": response.data._id, "password": this.newGame.password || ""}));
       this.$window.location.href = "play/" + response.data._id;
     });
   }

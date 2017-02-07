@@ -96,7 +96,7 @@ export function show(req, res) {
   return Game.findOne({_id: req.params.id, password: req.body.password}).exec()
     .then(handleEntityNotFound(res))
     .then(function(res){
-      res.drawnObject = req.user.name === res.drawer ? res.drawnObject : false;
+      res.drawnObject = req.user.name === res.drawer ? res.drawnObject : "*".repeat(res.drawnObject.length).split("").join(" ");
       res.drawerToken = req.user.name === res.drawer ? res.drawerToken : false;
       return res;
     })
@@ -116,6 +116,9 @@ export function create(req, res) {
 export function createWithSocket(req, res) {
   req.drawnObject = getWord(req.language);
   return Game.create(req);
+}
+export function getItem(req, res) {
+  return Game.find({_id: req.gameId, drawerToken: req.drawerToken});
 }
 // Upserts the given Game in the DB at the specified ID
 export function upsert(req, res) {

@@ -18,8 +18,9 @@ export class PlayComponent {
   };
   newComment = {};
   isDrawer = false;
-  lastPoint = 0;
+  lastPoint = -1;
   timeToRedirect = 8;
+  ongoingInterval = false;
   colors = ["black", "red", "orange", "yellow", "green", "blue", "purple"];
   /*@ngInject*/
   constructor($http, $stateParams, $scope, $window, socket, Auth) {
@@ -27,10 +28,24 @@ export class PlayComponent {
     $scope.$watchCollection("playCtrl.game.points", function(newP, oldP){
       console.log($scope.playCtrl.game.points);
       if (newP.length){
-        for (var x = $scope.playCtrl.lastPoint; x < $scope.playCtrl.game.points.length; x++){
-          var point = $scope.playCtrl.game.points[x];
-          $scope.draw(point.x, point.y, point.color, point.size, point.startPoint);
-          $scope.playCtrl.lastPoint = x;
+        if ($scope.playCtrl.lastPoint<0){
+          for (var x = $scope.playCtrl.lastPoint + 1; x < $scope.playCtrl.game.points.length; x++){
+            var point = $scope.playCtrl.game.points[x];
+            $scope.draw(point.x, point.y, point.color, point.size, point.startPoint);
+            $scope.playCtrl.lastPoint = x;
+          }
+        }
+        else if(!$scope.playCtrl.ongoingInterval){
+          $scope.playCtrl.ongoingInterval = true;
+          $scope.playCtrl.pointInterval = $scope.playCtrl.$window.setInterval(function(){
+            $scope.playCtrl.lastPoint = $scope.playCtrl.lastPoint + 1;
+            var point = $scope.playCtrl.game.points[$scope.playCtrl.lastPoint];
+            $scope.draw(point.x, point.y, point.color, point.size, point.startPoint);
+            if ($scope.playCtrl.lastPoint == $scope.playCtrl.game.points.length - 1){
+              $scope.playCtrl.ongoingInterval = false;
+              $scope.playCtrl.$window.clearInterval($scope.playCtrl.pointInterval);
+            }
+          }, 10);
         }
       }
     });
@@ -124,9 +139,33 @@ export default angular.module('nitrousApp.play', [uiRouter])
         scope.setDrawer = function(){
           element.on("mousedown", scope.pressMouseDown);
           element.on("mousemove", scope.moveMouse);
+          scope.sendHints();
         };
         scope.getSize = function(){
           return parseInt(scope.size);
+        };
+        scope.findLetter = function(text){
+          var x = Math.floor(Math.random() * text.length);
+          if (text[x] === "*"){
+            return x;
+          }
+          else{
+            return scope.findLetter(text);
+          }
+        };
+        scope.sendHints = function(){
+          scope.hintString = "*".repeat(vars.game.drawnObject.length);
+          scope.hintLoop = window.setInterval(function(){
+            var letterNumber = scope.findLetter(scope.hintString);
+            var stringArray = scope.hintString.split("");
+            stringArray[letterNumber] = vars.game.drawnObject[letterNumber];
+            scope.hintString = stringArray.join("");
+            vars.socket.sendHint({gameId: scope.gameId, hintString: scope.hintString, password: vars.passVar.password});
+            console.log("sender");
+            if (scope.hintString === vars.game.drawnObject){
+              window.clearInterval(scope.hintLoop);
+            }
+          }, 20000);
         };
         guessInput.on("keydown", function($event) {
           console.log($event);
@@ -150,6 +189,7 @@ export default angular.module('nitrousApp.play', [uiRouter])
             scope.sendPoints();
           }
           scope.draw(x, y, scope.color, size, true);
+          scope.lastTime = Date.now();
           console.log(vars.game.points);
         };
         scope.test = function(){
@@ -169,6 +209,8 @@ export default angular.module('nitrousApp.play', [uiRouter])
             }
             scope.draw(x, y, scope.color, size, false);
             vars.lastPoint = scope.counter;
+            console.log(Date.now()-scope.lastTime);
+            scope.lastTime = Date.now();
           }
         };
         scope.sendPoints = function(){

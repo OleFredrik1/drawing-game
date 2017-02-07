@@ -31,6 +31,10 @@ export function register(socket) {
       socket.broadcast.to(options.oldGameId+options.password).emit("new game", res._id);
     });
   });
+  socket.on("send hint", function(hint){
+    console.log("får hint");
+    socket.broadcast.to(hint.gameId+hint.password).emit("hint", hint.hintString);
+  });
 }
 
 

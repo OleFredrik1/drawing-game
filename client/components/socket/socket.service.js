@@ -94,6 +94,10 @@ function Socket(socketFactory) {
     sendGuess(guess){
       socket.emit("send guess", guess);
     },
+    sendHint(hint){
+      socket.emit("send hint", hint);
+      console.log("sender hint socket" + hint);
+    },
     initializeGame(gameID, points, guesses, comments, drawer, scope, rightGuess, rightGuessed, pass){
       socket.emit("join room", gameID+pass);
       if (drawer){
@@ -115,6 +119,12 @@ function Socket(socketFactory) {
             }
           });
           console.log("gjør klar til å få nytt punkt");
+        socket.on("hint", function(item) {
+           scope.$apply(function(){
+             scope.playCtrl.game.drawnObject = item.split("").join(" ");
+           }); 
+           console.log("hint har kommet" + item);
+        });
       }
       socket.on("comment", function(data){
         comments.push(data);
