@@ -1,6 +1,6 @@
 # The Drawing Game
 
-Try the game at https://github.com/DaftMonk/generator-angular-fullstack
+Try the game at https://the-drawing-game.herokuapp.com
 
 This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 4.1.0.
 
